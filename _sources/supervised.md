@@ -1,3 +1,3 @@
-# 4. Supervised Learning
+# Supervised Learning
 
 merupakan

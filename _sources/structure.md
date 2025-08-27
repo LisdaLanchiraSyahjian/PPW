@@ -1,4 +1,4 @@
-# 8. Web Structure Mining
+# Web Structure Mining
 
 upakan
 

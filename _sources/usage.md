@@ -1,3 +1,3 @@
-# 7. Web Usage Mining
+# Web Usage Mining
 
 upakan

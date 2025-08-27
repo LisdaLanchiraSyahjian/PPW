@@ -1,3 +1,3 @@
-# 2. WEB Crawling
+# WEB Crawling
 
 merupakan
