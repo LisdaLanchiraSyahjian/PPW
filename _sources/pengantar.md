@@ -1,0 +1,3 @@
+# Pengantar Web Mining
+
+Web mining adalah proses mengekstraksi pengetahuan dan informasi berharga dari data yang ada di internet dengan memanfaatkan teknik data mining, text mining, dan machine learning. Proses ini mencakup tiga aspek utama, yaitu web content mining untuk menggali isi atau konten web seperti teks dan gambar, web structure mining untuk menganalisis hubungan antar halaman melalui hyperlink, serta web usage mining untuk memahami perilaku pengguna berdasarkan data kunjungan. Dengan demikian, web mining membantu mengubah data web yang melimpah menjadi informasi bermakna yang bermanfaat bagi bisnis, penelitian, maupun pengembangan layanan digital.

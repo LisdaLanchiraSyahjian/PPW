@@ -1,11 +1,6 @@
-# Welcome to your Jupyter Book
+# Pencarian dan Penambangan WEB
 
-This is a small sample book to give you a feel for how book content is
-structured.
-It shows off a few of the major file types, as well as some sample content.
-It does not go in-depth into any particular topic - check out [the Jupyter Book documentation](https://jupyterbook.org) for more information.
-
-Check out the content pages bundled with this sample book to see more.
+Perkenalkan nama saya Lisda Lanchira Syahjian dengan NIM 220411100091. Orang-orang biasanya memanggil saya dengan panggilan Lisda. Saya berkuliah di Universitas Trunojoyo MaDUra, Fakultas Teknik Program Studi Teknik Informatika. Saya lahir dan tumbuh besar di kota Pamekasan. Sekarang saya sudah semester 7 dan salah satu mata kuliah yang saya ambil pada semester ini adalah Pencarian dan Penambangan WEB. Semoga pada mata kuliah ini saya dapat mengikuti dengan baik dan mendapatkan hasil yang maksimal.
 
 ```{tableofcontents}
 ```
