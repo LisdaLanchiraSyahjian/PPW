@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>&lt;no title&gt; &#8212; PPW</title>
+    <title>Scrapping Berita dari Liputan 6 &#8212; PPW</title>
   
   
   
@@ -340,9 +340,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -353,19 +351,11 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Scrapping Berita dari Liputan 6</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -375,16 +365,23 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="scrapping-berita-dari-liputan-6">
+<h1>Scrapping Berita dari Liputan 6<a class="headerlink" href="#scrapping-berita-dari-liputan-6" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">selenium</span> <span class="n">webdriver</span><span class="o">-</span><span class="n">manager</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: selenium in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (4.32.0)
-Collecting webdriver-manager
-  Downloading webdriver_manager-4.0.2-py2.py3-none-any.whl.metadata (12 kB)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: selenium in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (4.32.0)Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.1.1 -&gt; 25.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: webdriver-manager in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (4.0.2)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from urllib3[socks]&lt;3,&gt;=1.26-&gt;selenium) (2.2.2)
 Requirement already satisfied: trio~=0.17 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from selenium) (0.30.0)
 Requirement already satisfied: trio-websocket~=0.9 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from selenium) (0.12.2)
@@ -400,31 +397,11 @@ Requirement already satisfied: cffi&gt;=1.14 in c:\users\user\appdata\local\prog
 Requirement already satisfied: wsproto&gt;=0.14 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from trio-websocket~=0.9-&gt;selenium) (1.2.0)
 Requirement already satisfied: pysocks!=1.5.7,&lt;2.0,&gt;=1.5.6 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from urllib3[socks]&lt;3,&gt;=1.26-&gt;selenium) (1.7.1)
 Requirement already satisfied: requests in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from webdriver-manager) (2.32.3)
-Collecting python-dotenv (from webdriver-manager)
-  Downloading python_dotenv-1.1.1-py3-none-any.whl.metadata (24 kB)
+Requirement already satisfied: python-dotenv in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from webdriver-manager) (1.1.1)
 Requirement already satisfied: packaging in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from webdriver-manager) (24.1)
 Requirement already satisfied: pycparser in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from cffi&gt;=1.14-&gt;trio~=0.17-&gt;selenium) (2.22)
 Requirement already satisfied: h11&lt;1,&gt;=0.9.0 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from wsproto&gt;=0.14-&gt;trio-websocket~=0.9-&gt;selenium) (0.16.0)
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from requests-&gt;webdriver-manager) (3.3.2)
-Downloading webdriver_manager-4.0.2-py2.py3-none-any.whl (27 kB)
-Downloading python_dotenv-1.1.1-py3-none-any.whl (20 kB)
-Installing collected packages: python-dotenv, webdriver-manager
-
-   ---------------------------------------- 0/2 [python-dotenv]
-   ---------------------------------------- 0/2 [python-dotenv]
-   ---------------------------------------- 0/2 [python-dotenv]
-   -------------------- ------------------- 1/2 [webdriver-manager]
-   -------------------- ------------------- 1/2 [webdriver-manager]
-   -------------------- ------------------- 1/2 [webdriver-manager]
-   -------------------- ------------------- 1/2 [webdriver-manager]
-   ---------------------------------------- 2/2 [webdriver-manager]
-
-Successfully installed python-dotenv-1.1.1 webdriver-manager-4.0.2
-Note: you may need to restart the kernel to use updated packages.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.1.1 -&gt; 25.2
-[notice] To update, run: python.exe -m pip install --upgrade pip
 </pre></div>
 </div>
 </div>
@@ -514,21 +491,22 @@ Note: you may need to restart the kernel to use updated packages.
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Scraping selesai! Data tersimpan di liputan6_news.csv
    id                                       Judul Berita Isi Berita  \
 0   1  Mobile Training Unit Permudah Warga Dapat Kerj...              
-1   2  Immanuel Ebenezer Mengaku Terima Setoran Lain ...              
-2   3  Top 3 News: Ini Dugaan Tindak Pidana Ferry Irw...              
-3   4  KPK Blak-blakan Ungkap Awal Mula Dugaan Ridwan...              
-4   5  Menimipas Serahkan Langsung SK Kenaikan Grade ...              
+1   2  Polisi Temukan Lebih dari 10 Akun Anonim Sebar...              
+2   3  Immanuel Ebenezer Mengaku Terima Setoran Lain ...              
+3   4  Top 3 News: Ini Dugaan Tindak Pidana Ferry Irw...              
+4   5  KPK Blak-blakan Ungkap Awal Mula Dugaan Ridwan...              
 
   Kategori Berita  
 0            News  
-1       Peristiwa  
+1     Megapolitan  
 2       Peristiwa  
 3       Peristiwa  
-4            News  
+4       Peristiwa  
 </pre></div>
 </div>
 </div>
 </div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -566,22 +544,6 @@ Note: you may need to restart the kernel to use updated packages.
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
-</ul>
-
-  </nav></div>
-
-</div></div>
               
             
           </div>
