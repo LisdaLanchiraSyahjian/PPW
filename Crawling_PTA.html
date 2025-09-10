@@ -1,0 +1,1009 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; PPW</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Crawling_PTA';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.png" class="logo__image only-light" alt="PPW - Home"/>
+    <img src="_static/foto.png" class="logo__image only-dark pst-js-only" alt="PPW - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Pencarian dan Penambangan WEB
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pengantar.html">Pengantar Web Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepocessing.html">Data Prepocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsupervised.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content.html">Web Content Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Web Usage Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Web Structure Mining</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FCrawling_PTA.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Crawling_PTA.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>builtwith
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting builtwith
+  Downloading builtwith-1.3.4.tar.gz (34 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status &#39;done&#39;
+Requirement already satisfied: six in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from builtwith) (1.16.0)
+Building wheels for collected packages: builtwith
+  Building wheel for builtwith (setup.py): started
+  Building wheel for builtwith (setup.py): finished with status &#39;done&#39;
+  Created wheel for builtwith: filename=builtwith-1.3.4-py3-none-any.whl size=36133 sha256=3d29a127350ebe874bca3524aaaf20240cfb5f6e7408d17a3b312c6885d5feca
+  Stored in directory: c:\users\user\appdata\local\pip\cache\wheels\7f\2d\b2\606e3df914d4aeeab99c4a4e3e9a61673d2293c2e346db00c8
+Successfully built builtwith
+Installing collected packages: builtwith
+Successfully installed builtwith-1.3.4
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  DEPRECATION: Building &#39;builtwith&#39; using the legacy setup.py bdist_wheel mechanism, which will be removed in a future version. pip 25.3 will enforce this behaviour change. A possible replacement is to use the standardized build interface by setting the `--use-pep517` option, (possibly combined with `--no-build-isolation`), or adding a `pyproject.toml` file to the source tree of &#39;builtwith&#39;. Discussion can be found at https://github.com/pypa/pip/issues/6334
+
+[notice] A new release of pip is available: 25.1.1 -&gt; 25.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">builtwith</span>
+
+<span class="c1"># Analisis teknologi yang digunakan</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">builtwith</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;https://pta.trunojoyo.ac.id&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;web-servers&#39;: [&#39;Nginx&#39;], &#39;javascript-frameworks&#39;: [&#39;jQuery&#39;, &#39;jQuery UI&#39;]}
+</pre></div>
+</div>
+</div>
+</div>
+<p>##Crawling Link Dataset</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="k">def</span> <span class="nf">crawl_website</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Raise an error for bad status codes</span>
+
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Ambil semua judul h1, h2, h3</span>
+        <span class="n">headings</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">([</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="s1">&#39;h3&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">heading</span> <span class="ow">in</span> <span class="n">headings</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">heading</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">heading</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Ambil semua link</span>
+        <span class="n">links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;URL: </span><span class="si">{</span><span class="n">link</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> | Teks: </span><span class="si">{</span><span class="n">link</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Terjadi kesalahan saat mengakses </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Gunakan fungsi</span>
+<span class="n">crawl_website</span><span class="p">(</span><span class="s2">&quot;https://pta.trunojoyo.ac.id/&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>h2: Daftar Karya Ilmiah
+URL: index.html | Teks: 
+URL: # | Teks: 14677Journal
+URL: https://pta.trunojoyo.ac.id/ | Teks: Beranda
+URL: https://pta.trunojoyo.ac.id/c_search/ | Teks: Pencarian
+URL: https://pta.trunojoyo.ac.id/c_template/ | Teks: Download
+URL: https://library.trunojoyo.ac.id/detil.php?id=23 | Teks: Petunjuk Upload
+URL: https://pta.trunojoyo.ac.id/c_contact/ | Teks: Kontak
+URL: # | Teks: STRATEGI PENGEMBANGAN MAKANAN DAN MINUMAN KHAS PULAU GILIGENTING GUNA MENDUKUNG PARIWISATA BERKELANJUTAN
+URL: https://pta.trunojoyo.ac.id/welcome/detail/170361100003 | Teks: Selengkapnya
+URL: # | Teks: PERUMUSAN SANKSI PIDANA BAGI MASYARAKAT SEKITAR HUTAN YANG MELAKUKAN PENCURIAN KAYU MILIK NEGARA DALAM UNDANG-UNDANG NOMOR 18 TAHUN 2013
+URL: https://pta.trunojoyo.ac.id/welcome/detail/170111100053 | Teks: Selengkapnya
+URL: # | Teks: Peran Teor Motivasi Herzberg Sebagai Mediator Self Efficacy, Lingkungan Kerja Dalam Meningkatkan Prestasi Kerja Pegawai ( Kantor Jasa Penilai Publik Guntur Eki Andri dan Rekan Kota Surabaya )
+URL: https://pta.trunojoyo.ac.id/welcome/detail/160211100116 | Teks: Selengkapnya
+URL: https://pta.trunojoyo.ac.id/welcome/index/2 | Teks: 2
+URL: https://pta.trunojoyo.ac.id/welcome/index/3 | Teks: 3
+URL: https://pta.trunojoyo.ac.id/welcome/index/2 | Teks: &gt;
+URL: https://pta.trunojoyo.ac.id/welcome/index/4893 | Teks: »
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/1 | Teks: Hukum
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/1 | Teks: Ilmu Hukum
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/24 | Teks: Magister Ilmu Hukum
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/2 | Teks: Pertanian
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/2 | Teks: Teknologi Industri Pertanian
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/3 | Teks: Agribisnis
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/4 | Teks: Agroteknologi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/5 | Teks: Ilmu Kelautan
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/35 | Teks: Manajemen Sumberdaya Perairan
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/37 | Teks: Magister Pengelolaan Sumber Daya Alam
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/3 | Teks: Ekonomi Dan Bisnis
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/6 | Teks: Ekonomi Pembangunan
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/7 | Teks: Manajemen
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/8 | Teks: Akuntansi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/21 | Teks: D3 Akuntansi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/22 | Teks: Magister Manajemen
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/25 | Teks: Magister Akuntansi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/26 | Teks: D3 Enterpreneurship
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/36 | Teks: Magister Ilmu Ekonomi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/41 | Teks: Doktor Ilmu Manajemen
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/4 | Teks: Teknik
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/9 | Teks: Teknik Industri
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/10 | Teks: Teknik Informatika
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/11 | Teks: Manajemen Informatika
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/19 | Teks: Teknik Multimedia Dan Jaringan
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/20 | Teks: Mekatronika
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/23 | Teks: Teknik Elektro
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/31 | Teks: Sistem Informasi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/32 | Teks: Teknik Mesin
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/33 | Teks: Teknik Mekatronika
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/5 | Teks: Ilmu Sosial Dan Ilmu Budaya
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/12 | Teks: Sosiologi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/13 | Teks: Ilmu Komunikasi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/14 | Teks: Psikologi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/15 | Teks: Sastra Inggris
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/6 | Teks: Keislaman
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/16 | Teks: Ekonomi Syariah
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/17 | Teks: Hukum Bisnis Syariah
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/7 | Teks: Ilmu Pendidikan
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/18 | Teks: Pgsd
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/27 | Teks: Pendidikan Bhs Dan Sastra Indonesia
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/28 | Teks: Pendidikan Informatika
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/29 | Teks: Pendidikan Ipa
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/30 | Teks: Pgpaud
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/38 | Teks: Pendidikan Profesi Guru
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/99 | Teks: Mbkm
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/99 | Teks: Mbkm
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/100 | Teks: Pascasarjana
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/39 | Teks: Magister Pendidikan Dasar
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/40 | Teks: Doktor Pengelolaan Sumber Daya Alam
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/1 | Teks: Hukum
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/2 | Teks: Pertanian
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/3 | Teks: Ekonomi Dan Bisnis
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/4 | Teks: Teknik
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/5 | Teks: Ilmu Sosial Dan Ilmu Budaya
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/6 | Teks: Keislaman
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/7 | Teks: Ilmu Pendidikan
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/99 | Teks: Mbkm
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/100 | Teks: Pascasarjana
+URL: http://trunojoyo.ac.id | Teks: www.trunojoyo.ac.id
+URL: http://e-journal.dikti.go.id | Teks: http://e-journal.dikti.go.id
+URL: # | Teks: 
+URL: # | Teks: 
+URL: # | Teks: 
+URL: # | Teks: 
+URL: # | Teks: 
+URL: # | Teks: 
+URL: # | Teks: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="k">def</span> <span class="nf">crawl_website</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># Raise an error for bad status codes</span>
+
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Ambil semua judul h1, h2, h3</span>
+        <span class="n">headings</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">([</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span> <span class="s1">&#39;h2&#39;</span><span class="p">,</span> <span class="s1">&#39;h3&#39;</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">heading</span> <span class="ow">in</span> <span class="n">headings</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">heading</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">heading</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Ambil semua link</span>
+        <span class="n">links</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;URL: </span><span class="si">{</span><span class="n">link</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> | Teks: </span><span class="si">{</span><span class="n">link</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Terjadi kesalahan saat mengakses </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Gunakan fungsi</span>
+<span class="n">crawl_website</span><span class="p">(</span><span class="s2">&quot;https://pta.trunojoyo.ac.id/welcome/index/2&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>h2: Daftar Karya Ilmiah
+URL: index.html | Teks: 
+URL: # | Teks: 14677Journal
+URL: https://pta.trunojoyo.ac.id/ | Teks: Beranda
+URL: https://pta.trunojoyo.ac.id/c_search/ | Teks: Pencarian
+URL: https://pta.trunojoyo.ac.id/c_template/ | Teks: Download
+URL: https://library.trunojoyo.ac.id/detil.php?id=23 | Teks: Petunjuk Upload
+URL: https://pta.trunojoyo.ac.id/c_contact/ | Teks: Kontak
+URL: # | Teks: ANALISIS KANDUNGAN TIMBAL (Pb) UDANG REBON (Acetes sp) HASIL TANGKAPAN DI PERAIRAN SOCCAH KABUPATEN BANGKALAN
+URL: https://pta.trunojoyo.ac.id/welcome/detail/160351100011 | Teks: Selengkapnya
+URL: # | Teks: Analisis Wacana Media Online Detik.com dalam Memberitakan Peristiwa Kerusuhan Mahasiswa Papua di Surabaya
+URL: https://pta.trunojoyo.ac.id/welcome/detail/160521100059 | Teks: Selengkapnya
+URL: # | Teks: DETEKSI OBJEK MANUSIA BERBASIS ONE STAGE DETECTOR MENGGUNAKAN ALGORITMA YOU ONLY LOOK ONCE VERSI 2 (YOLOv2)
+URL: https://pta.trunojoyo.ac.id/welcome/detail/160411100044 | Teks: Selengkapnya
+URL: https://pta.trunojoyo.ac.id/welcome/index/1 | Teks: &lt;
+URL: https://pta.trunojoyo.ac.id/welcome/index/ | Teks: 1
+URL: https://pta.trunojoyo.ac.id/welcome/index/3 | Teks: 3
+URL: https://pta.trunojoyo.ac.id/welcome/index/4 | Teks: 4
+URL: https://pta.trunojoyo.ac.id/welcome/index/3 | Teks: &gt;
+URL: https://pta.trunojoyo.ac.id/welcome/index/4893 | Teks: »
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/1 | Teks: Hukum
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/1 | Teks: Ilmu Hukum
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/24 | Teks: Magister Ilmu Hukum
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/2 | Teks: Pertanian
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/2 | Teks: Teknologi Industri Pertanian
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/3 | Teks: Agribisnis
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/4 | Teks: Agroteknologi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/5 | Teks: Ilmu Kelautan
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/35 | Teks: Manajemen Sumberdaya Perairan
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/37 | Teks: Magister Pengelolaan Sumber Daya Alam
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/3 | Teks: Ekonomi Dan Bisnis
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/6 | Teks: Ekonomi Pembangunan
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/7 | Teks: Manajemen
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/8 | Teks: Akuntansi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/21 | Teks: D3 Akuntansi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/22 | Teks: Magister Manajemen
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/25 | Teks: Magister Akuntansi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/26 | Teks: D3 Enterpreneurship
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/36 | Teks: Magister Ilmu Ekonomi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/41 | Teks: Doktor Ilmu Manajemen
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/4 | Teks: Teknik
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/9 | Teks: Teknik Industri
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/10 | Teks: Teknik Informatika
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/11 | Teks: Manajemen Informatika
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/19 | Teks: Teknik Multimedia Dan Jaringan
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/20 | Teks: Mekatronika
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/23 | Teks: Teknik Elektro
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/31 | Teks: Sistem Informasi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/32 | Teks: Teknik Mesin
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/33 | Teks: Teknik Mekatronika
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/5 | Teks: Ilmu Sosial Dan Ilmu Budaya
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/12 | Teks: Sosiologi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/13 | Teks: Ilmu Komunikasi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/14 | Teks: Psikologi
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/15 | Teks: Sastra Inggris
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/6 | Teks: Keislaman
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/16 | Teks: Ekonomi Syariah
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/17 | Teks: Hukum Bisnis Syariah
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/7 | Teks: Ilmu Pendidikan
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/18 | Teks: Pgsd
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/27 | Teks: Pendidikan Bhs Dan Sastra Indonesia
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/28 | Teks: Pendidikan Informatika
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/29 | Teks: Pendidikan Ipa
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/30 | Teks: Pgpaud
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/38 | Teks: Pendidikan Profesi Guru
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/99 | Teks: Mbkm
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/99 | Teks: Mbkm
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/100 | Teks: Pascasarjana
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/39 | Teks: Magister Pendidikan Dasar
+URL: https://pta.trunojoyo.ac.id/c_search/byprod/40 | Teks: Doktor Pengelolaan Sumber Daya Alam
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/1 | Teks: Hukum
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/2 | Teks: Pertanian
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/3 | Teks: Ekonomi Dan Bisnis
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/4 | Teks: Teknik
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/5 | Teks: Ilmu Sosial Dan Ilmu Budaya
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/6 | Teks: Keislaman
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/7 | Teks: Ilmu Pendidikan
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/99 | Teks: Mbkm
+URL: https://pta.trunojoyo.ac.id/c_search/byfac/100 | Teks: Pascasarjana
+URL: http://trunojoyo.ac.id | Teks: www.trunojoyo.ac.id
+URL: http://e-journal.dikti.go.id | Teks: http://e-journal.dikti.go.id
+URL: # | Teks: 
+URL: # | Teks: 
+URL: # | Teks: 
+URL: # | Teks: 
+URL: # | Teks: 
+URL: # | Teks: 
+URL: # | Teks: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>requests
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>beautifulsoup4
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: requests in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (2.32.3)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from requests) (3.3.2)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from requests) (3.7)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from requests) (2.2.2)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from requests) (2024.6.2)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.1.1 -&gt; 25.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: beautifulsoup4 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (4.12.3)
+Requirement already satisfied: soupsieve&gt;1.2 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from beautifulsoup4) (2.6)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.1.1 -&gt; 25.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="k">def</span> <span class="nf">ptaa</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;penulis&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;judul&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;pembimbing_pertama&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;pembimbing_kedua&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;abstrak&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="s2">&quot;prodi&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="n">prodi_urls</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Ilmu Hukum&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Magister Ilmu Hukum&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/24&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Teknologi Industri Pertanian&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Agribisnis&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Agroteknologi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/4&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Ilmu Kelautan&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Manajemen Sumberdaya Perairan&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/35&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Magister Pengelolaan Sumber Daya Alam&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/37&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Ekonomi Pembangunan&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/6&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Manajemen&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/7&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Akuntansi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/8&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;D3 Akuntansi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/21&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Magister Manajemen&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/22&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Magister Akuntansi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/25&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;D3 Enterpreneurship&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/26&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Magister Ilmu Ekonomi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/36&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Doktor Ilmu Manajemen&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/41&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Teknik Industri&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/9&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Teknik Informatika&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/10&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Manajemen Informatika&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/11&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Teknik Multimedia Dan Jaringan&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/19&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mekatronika&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/20&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Teknik Elektro&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/23&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Sistem Informasi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/31&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Teknik Mesin&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/32&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Teknik Mekatronika&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/33&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Sosiologi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/12&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Ilmu Komunikasi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/13&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Psikologi&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/14&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Sastra Inggris&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/15&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Ekonomi Syariah&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/16&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Hukum Bisnis Syariah&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/17&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PGSD&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/18&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Pendidikan Bhs Dan Sastra Indonesia&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/27&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Pendidikan Informatika&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/28&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Pendidikan IPA&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/29&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;PGPAUD&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/30&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Pendidikan Profesi Guru&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/38&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;MBKM&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/99&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Magister Pendidikan Dasar&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/39&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Doktor Pengelolaan Sumber Daya Alam&quot;</span><span class="p">:</span> <span class="s2">&quot;https://pta.trunojoyo.ac.id/c_search/byprod/40&quot;</span>
+    <span class="p">}</span>
+
+    <span class="c1"># looping semua prodi</span>
+    <span class="k">for</span> <span class="n">nama_prodi</span><span class="p">,</span> <span class="n">prodi_url</span> <span class="ow">in</span> <span class="n">prodi_urls</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>  <span class="c1"># 5 halaman per prodi</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prodi_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+            <span class="n">jurnals</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;li[data-cat=&quot;#luxury&quot;]&#39;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">jurnal</span> <span class="ow">in</span> <span class="n">jurnals</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">jurnal</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s1">&#39;a.gray.button&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>
+                <span class="n">soup1</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+                <span class="n">isi</span> <span class="o">=</span> <span class="n">soup1</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s1">&#39;div#content_journal&#39;</span><span class="p">)</span>
+
+                <span class="n">judul</span> <span class="o">=</span> <span class="n">isi</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s1">&#39;a.title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+                <span class="n">penulis</span> <span class="o">=</span> <span class="n">isi</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s1">&#39;span:-soup-contains(&quot;Penulis&quot;)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; : &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">pembimbing_pertama</span> <span class="o">=</span> <span class="n">isi</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s1">&#39;span:-soup-contains(&quot;Dosen Pembimbing I&quot;)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; : &#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">pembimbing_kedua</span> <span class="o">=</span> <span class="n">isi</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s1">&#39;span:-soup-contains(&quot;Dosen Pembimbing II&quot;)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; :&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+                <span class="n">abstrak</span> <span class="o">=</span> <span class="n">isi</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s1">&#39;p[align=&quot;justify&quot;]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">abstrak</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+                    <span class="n">abstrak</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">isi</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">findNext</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">stripped_strings</span><span class="p">)</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+
+                <span class="n">data</span><span class="p">[</span><span class="s2">&quot;penulis&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">penulis</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">[</span><span class="s2">&quot;judul&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">judul</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">[</span><span class="s2">&quot;pembimbing_pertama&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pembimbing_pertama</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">[</span><span class="s2">&quot;pembimbing_kedua&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pembimbing_kedua</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">[</span><span class="s2">&quot;abstrak&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">abstrak</span><span class="p">)</span>
+                <span class="n">data</span><span class="p">[</span><span class="s2">&quot;prodi&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nama_prodi</span><span class="p">)</span>
+
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;pta.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>  <span class="c1"># tampil rapi di notebook</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ptaa</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urljoin</span><span class="p">,</span> <span class="n">urlparse</span>
+
+<span class="c1"># Konfigurasi</span>
+<span class="n">URL</span> <span class="o">=</span> <span class="s2">&quot;https://lisdalanchirasyahjian.github.io/PPW/intro.html&quot;</span>  <span class="c1"># Website target</span>
+<span class="n">FOLDER_NAME</span> <span class="o">=</span> <span class="s2">&quot;gambar&quot;</span>             <span class="c1"># Folder untuk simpan gambar</span>
+<span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Buat folder jika belum ada</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">FOLDER_NAME</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">FOLDER_NAME</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Folder &#39;</span><span class="si">{</span><span class="n">FOLDER_NAME</span><span class="si">}</span><span class="s2">&#39; berhasil dibuat.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ambil halaman web</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gagal mengakses </span><span class="si">{</span><span class="n">URL</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+
+<span class="c1"># Parse HTML dengan BeautifulSoup</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;html.parser&#39;</span><span class="p">)</span>
+
+<span class="c1"># Cari semua tag &lt;img&gt;</span>
+<span class="n">images</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ditemukan </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span><span class="si">}</span><span class="s2"> gambar di halaman </span><span class="si">{</span><span class="n">URL</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="c1"># List untuk menyimpan URL gambar</span>
+<span class="n">image_urls</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">img</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">images</span><span class="p">):</span>
+    <span class="c1"># Ambil atribut src</span>
+    <span class="n">src</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">src</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gambar ke-</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2"> tidak memiliki atribut &#39;src&#39;, dilewati.&quot;</span><span class="p">)</span>
+        <span class="k">continue</span>
+
+    <span class="c1"># Konversi URL relatif ke absolut</span>
+    <span class="n">img_url</span> <span class="o">=</span> <span class="n">urljoin</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">src</span><span class="p">)</span>
+    <span class="n">image_urls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img_url</span><span class="p">)</span>
+
+    <span class="c1"># Ambil nama file dari URL</span>
+    <span class="n">parsed_url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">img_url</span><span class="p">)</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">parsed_url</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="c1"># Validasi nama file</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span> <span class="ow">or</span> <span class="s1">&#39;.&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="n">ext</span> <span class="o">=</span> <span class="s1">&#39;.jpg&#39;</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;image_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}{</span><span class="n">ext</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Pastikan ekstensi file valid</span>
+    <span class="n">valid_exts</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;.png&#39;</span><span class="p">,</span> <span class="s1">&#39;.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;.jpeg&#39;</span><span class="p">,</span> <span class="s1">&#39;.gif&#39;</span><span class="p">,</span> <span class="s1">&#39;.webp&#39;</span><span class="p">,</span> <span class="s1">&#39;.svg&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">valid_exts</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">+=</span> <span class="s1">&#39;.jpg&#39;</span>
+
+    <span class="c1"># Path lokal</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">FOLDER_NAME</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="c1"># Download gambar</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">img_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">img_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">img_response</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">img_response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Berhasil download: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> -&gt; </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gagal download </span><span class="si">{</span><span class="n">img_url</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Ringkasan</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Crawling selesai!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Semua gambar disimpan di: ./</span><span class="si">{</span><span class="n">FOLDER_NAME</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total gambar diproses: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">image_urls</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Folder &#39;gambar&#39; berhasil dibuat.
+Ditemukan 2 gambar di halaman https://lisdalanchirasyahjian.github.io/PPW/intro.html.
+Berhasil download: foto.png -&gt; gambar/foto.png
+Berhasil download: foto.png -&gt; gambar/foto.png
+
+Crawling selesai!
+Semua gambar disimpan di: ./gambar
+Total gambar diproses: 2
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lisda Lanchira Syahjian
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
