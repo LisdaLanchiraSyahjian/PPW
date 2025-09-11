@@ -63,6 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Scrapping_Berita';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Prepocessing" href="prepocessing.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="Crawling_PTA.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +115,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -168,8 +168,9 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="pengantar.html">Pengantar Web Mining</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Scrapping Berita dari Liputan 6</a></li>
 <li class="toctree-l1"><a class="reference internal" href="prepocessing.html">Data Prepocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unsupervised.html">Unsupervised Learning</a></li>
@@ -374,14 +375,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: selenium in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (4.32.0)Note: you may need to restart the kernel to use updated packages.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.1.1 -&gt; 25.2
-[notice] To update, run: python.exe -m pip install --upgrade pip
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: webdriver-manager in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (4.0.2)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: selenium in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (4.32.0)
+Requirement already satisfied: webdriver-manager in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (4.0.2)
 Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from urllib3[socks]&lt;3,&gt;=1.26-&gt;selenium) (2.2.2)
 Requirement already satisfied: trio~=0.17 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from selenium) (0.30.0)
 Requirement already satisfied: trio-websocket~=0.9 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from selenium) (0.12.2)
@@ -402,6 +397,11 @@ Requirement already satisfied: packaging in c:\users\user\appdata\local\programs
 Requirement already satisfied: pycparser in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from cffi&gt;=1.14-&gt;trio~=0.17-&gt;selenium) (2.22)
 Requirement already satisfied: h11&lt;1,&gt;=0.9.0 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from wsproto&gt;=0.14-&gt;trio-websocket~=0.9-&gt;selenium) (0.16.0)
 Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\users\user\appdata\local\programs\python\python312\lib\site-packages (from requests-&gt;webdriver-manager) (3.3.2)
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.1.1 -&gt; 25.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
 </pre></div>
 </div>
 </div>
@@ -487,24 +487,6 @@ Note: you may need to restart the kernel to use updated packages.
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Scraping selesai! Data tersimpan di liputan6_news.csv
-   id                                       Judul Berita Isi Berita  \
-0   1  Mobile Training Unit Permudah Warga Dapat Kerj...              
-1   2  Polisi Temukan Lebih dari 10 Akun Anonim Sebar...              
-2   3  Immanuel Ebenezer Mengaku Terima Setoran Lain ...              
-3   4  Top 3 News: Ini Dugaan Tindak Pidana Ferry Irw...              
-4   5  KPK Blak-blakan Ungkap Awal Mula Dugaan Ridwan...              
-
-  Kategori Berita  
-0            News  
-1     Megapolitan  
-2       Peristiwa  
-3       Peristiwa  
-4       Peristiwa  
-</pre></div>
-</div>
-</div>
 </div>
 </section>
 
@@ -538,6 +520,24 @@ Note: you may need to restart the kernel to use updated packages.
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="Crawling_PTA.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="prepocessing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Prepocessing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
