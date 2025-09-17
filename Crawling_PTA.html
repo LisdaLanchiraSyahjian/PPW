@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Crawling_PTA';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Scrapping Berita dari Liputan 6" href="Scrapping_Berita.html" />
+    <link rel="next" title="Data Preprocessing Teks" href="prepocessing.html" />
     <link rel="prev" title="Web Crawling" href="Crawling.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -172,8 +172,9 @@
 <li class="toctree-l1"><a class="reference internal" href="pengantar.html">Pengantar Web Mining</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Crawling.html">Web Crawling</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Crawling PTA</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Scrapping_Berita.html">Scrapping Berita dari Liputan 6</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prepocessing.html">Data Prepocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepocessing.html">Data Preprocessing Teks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Preprocessing_PTA.html">Preprocessing PTA Universitas Trunojoyo Madura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Preprocessing_Berita.html">Preprocessing Berita dari Detik.com</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unsupervised.html">Unsupervised Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="content.html">Web Content Mining</a></li>
@@ -792,12 +793,12 @@ Requirement already satisfied: soupsieve&gt;1.2 in c:\users\user\appdata\local\p
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ptaa</span><span class="p">()</span>
 
-<span class="nn">Cell In[6], line 69,</span> in <span class="ni">ptaa</span><span class="nt">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span> <span class="n">jurnals</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;li[data-cat=&quot;#luxury&quot;]&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="k">for</span> <span class="n">jurnal</span> <span class="ow">in</span> <span class="n">jurnals</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">69</span>     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">jurnal</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s1">&#39;a.gray.button&#39;</span><span class="p">)[</span><span class="s1">&#39;href&#39;</span><span class="p">])</span>
-<span class="g g-Whitespace">     </span><span class="mi">70</span>     <span class="n">soup1</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">71</span>     <span class="n">isi</span> <span class="o">=</span> <span class="n">soup1</span><span class="o">.</span><span class="n">select_one</span><span class="p">(</span><span class="s1">&#39;div#content_journal&#39;</span><span class="p">)</span>
+<span class="nn">Cell In[6], line 64,</span> in <span class="ni">ptaa</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>  <span class="c1"># 5 halaman per prodi</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>     <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prodi_url</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">64</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>     <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;html.parser&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span>     <span class="n">jurnals</span> <span class="o">=</span> <span class="n">soup</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;li[data-cat=&quot;#luxury&quot;]&#39;</span><span class="p">)</span>
 
 <span class="nn">File ~\AppData\Local\Programs\Python\Python312\Lib\site-packages\requests\api.py:73,</span> in <span class="ni">get</span><span class="nt">(url, params, **kwargs)</span>
 <span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1603,11 +1604,11 @@ Total gambar diproses: 2
       </div>
     </a>
     <a class="right-next"
-       href="Scrapping_Berita.html"
+       href="prepocessing.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Scrapping Berita dari Liputan 6</p>
+        <p class="prev-next-title">Data Preprocessing Teks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
