@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Perhitungan TF-IDF dan Word Embeding (Data Berita) &#8212; PPW</title>
+    <title>TF-IDF dan Word Embeding Data Berita &#8212; PPW</title>
   
   
   
@@ -60,10 +60,10 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'perhitungan_berita';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Perhitungan_Berita';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Supervised Learning" href="supervised.html" />
+    <link rel="next" title="Klasifikasi Berita menggunakan Fitur Latent Dirichlet Allocation" href="Klasifikasi_Berita.html" />
     <link rel="prev" title="Preprocessing Berita dari Detik.com" href="Preprocessing_Berita.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -176,7 +176,8 @@
 <li class="toctree-l1"><a class="reference internal" href="prepocessing.html">Data Preprocessing Teks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Preprocessing_PTA.html">Preprocessing PTA Universitas Trunojoyo Madura</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Preprocessing_Berita.html">Preprocessing Berita dari Detik.com</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Perhitungan TF-IDF dan Word Embeding (Data Berita)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">TF-IDF dan Word Embeding Data Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Klasifikasi_Berita.html">Klasifikasi Berita menggunakan Fitur Latent Dirichlet Allocation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unsupervised.html">Unsupervised Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="content.html">Web Content Mining</a></li>
@@ -253,7 +254,7 @@
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fperhitungan_berita.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FPerhitungan_Berita.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -283,7 +284,7 @@
       
       
       
-      <li><a href="_sources/perhitungan_berita.ipynb" target="_blank"
+      <li><a href="_sources/Perhitungan_Berita.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -293,7 +294,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -357,7 +358,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Perhitungan TF-IDF dan Word Embeding (Data Berita)</h1>
+    <h1>TF-IDF dan Word Embeding Data Berita</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -371,634 +372,115 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="perhitungan-tf-idf-dan-word-embeding-data-berita">
-<h1>Perhitungan TF-IDF dan Word Embeding (Data Berita)<a class="headerlink" href="#perhitungan-tf-idf-dan-word-embeding-data-berita" title="Link to this heading">#</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
-<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">plotly</span>
-<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">gensim</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="tf-idf-dan-word-embeding-data-berita">
+<h1>TF-IDF dan Word Embeding Data Berita<a class="headerlink" href="#tf-idf-dan-word-embeding-data-berita" title="Link to this heading">#</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>--force-reinstall<span class="w"> </span>numpy<span class="w"> </span>gensim
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting numpy
-  Using cached numpy-2.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
-Collecting gensim
-  Using cached gensim-4.3.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.1 kB)
-Collecting numpy
-  Using cached numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
-Collecting scipy&lt;1.14.0,&gt;=1.7.0 (from gensim)
-  Using cached scipy-1.13.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
-Collecting smart-open&gt;=1.8.1 (from gensim)
-  Using cached smart_open-7.3.1-py3-none-any.whl.metadata (24 kB)
-Collecting wrapt (from smart-open&gt;=1.8.1-&gt;gensim)
-  Using cached wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.4 kB)
-Using cached gensim-4.3.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (26.6 MB)
-Using cached numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.0 MB)
-Using cached scipy-1.13.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.2 MB)
-Using cached smart_open-7.3.1-py3-none-any.whl (61 kB)
-Using cached wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (88 kB)
-Installing collected packages: wrapt, numpy, smart-open, scipy, gensim
-  Attempting uninstall: wrapt
-    Found existing installation: wrapt 1.17.3
-    Uninstalling wrapt-1.17.3:
-      Successfully uninstalled wrapt-1.17.3
-  Attempting uninstall: numpy
-    Found existing installation: numpy 1.26.4
-    Uninstalling numpy-1.26.4:
-      Successfully uninstalled numpy-1.26.4
-  Attempting uninstall: smart-open
-    Found existing installation: smart_open 7.3.1
-    Uninstalling smart_open-7.3.1:
-      Successfully uninstalled smart_open-7.3.1
-  Attempting uninstall: scipy
-    Found existing installation: scipy 1.13.1
-    Uninstalling scipy-1.13.1:
-      Successfully uninstalled scipy-1.13.1
-  Attempting uninstall: gensim
-    Found existing installation: gensim 4.3.3
-    Uninstalling gensim-4.3.3:
-      Successfully uninstalled gensim-4.3.3
-<span class=" -Color -Color-Red">ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.</span>
-<span class=" -Color -Color-Red">tsfresh 0.21.1 requires scipy&gt;=1.14.0; python_version &gt;= &quot;3.10&quot;, but you have scipy 1.13.1 which is incompatible.</span>
-<span class=" -Color -Color-Red">opencv-contrib-python 4.12.0.88 requires numpy&lt;2.3.0,&gt;=2; python_version &gt;= &quot;3.9&quot;, but you have numpy 1.26.4 which is incompatible.</span>
-<span class=" -Color -Color-Red">thinc 8.3.6 requires numpy&lt;3.0.0,&gt;=2.0.0, but you have numpy 1.26.4 which is incompatible.</span>
-<span class=" -Color -Color-Red">opencv-python 4.12.0.88 requires numpy&lt;2.3.0,&gt;=2; python_version &gt;= &quot;3.9&quot;, but you have numpy 1.26.4 which is incompatible.</span>
-<span class=" -Color -Color-Red">opencv-python-headless 4.12.0.88 requires numpy&lt;2.3.0,&gt;=2; python_version &gt;= &quot;3.9&quot;, but you have numpy 1.26.4 which is incompatible.</span>
-Successfully installed gensim-4.3.3 numpy-1.26.4 scipy-1.13.1 smart-open-7.3.1 wrapt-1.17.3
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span><span class="p">,</span> <span class="n">FastText</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">re</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="c1"># Baca dataset hasil preprocessing</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/Semester 7/berita_detik_preprocessed.csv&#39;</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="c1"># Fungsi labeling berdasarkan isi berita</span>
+<span class="k">def</span> <span class="nf">label_kategori_isi</span><span class="p">(</span><span class="n">teks</span><span class="p">):</span>
+    <span class="n">teks</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">teks</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="c1"># Sport / Olahraga</span>
+    <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">k</span> <span class="ow">in</span> <span class="n">teks</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">&quot;bola&quot;</span><span class="p">,</span> <span class="s2">&quot;sepak&quot;</span><span class="p">,</span> <span class="s2">&quot;liga&quot;</span><span class="p">,</span> <span class="s2">&quot;pemain&quot;</span><span class="p">,</span> <span class="s2">&quot;timnas&quot;</span><span class="p">,</span> <span class="s2">&quot;olahraga&quot;</span><span class="p">,</span> <span class="s2">&quot;pertandingan&quot;</span><span class="p">,</span> <span class="s2">&quot;skor&quot;</span><span class="p">,</span> <span class="s2">&quot;gol&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;badminton&quot;</span><span class="p">,</span> <span class="s2">&quot;basket&quot;</span><span class="p">,</span> <span class="s2">&quot;voli&quot;</span><span class="p">,</span> <span class="s2">&quot;tenis&quot;</span><span class="p">,</span> <span class="s2">&quot;turnamen&quot;</span><span class="p">,</span> <span class="s2">&quot;kompetisi&quot;</span><span class="p">,</span> <span class="s2">&quot;olimpiade&quot;</span><span class="p">,</span> <span class="s2">&quot;pelatih&quot;</span>
+    <span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">&quot;olahraga&quot;</span>
 
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+    <span class="c1"># Travel / Wisata</span>
+    <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">k</span> <span class="ow">in</span> <span class="n">teks</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">&quot;wisata&quot;</span><span class="p">,</span> <span class="s2">&quot;jalan-jalan&quot;</span><span class="p">,</span> <span class="s2">&quot;pantai&quot;</span><span class="p">,</span> <span class="s2">&quot;gunung&quot;</span><span class="p">,</span> <span class="s2">&quot;destinasi&quot;</span><span class="p">,</span> <span class="s2">&quot;liburan&quot;</span><span class="p">,</span> <span class="s2">&quot;tiket&quot;</span><span class="p">,</span> <span class="s2">&quot;hotel&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resor&quot;</span><span class="p">,</span> <span class="s2">&quot;candi&quot;</span><span class="p">,</span> <span class="s2">&quot;monumen&quot;</span><span class="p">,</span> <span class="s2">&quot;pariwisata&quot;</span><span class="p">,</span> <span class="s2">&quot;objek wisata&quot;</span><span class="p">,</span> <span class="s2">&quot;travel&quot;</span><span class="p">,</span> <span class="s2">&quot;perjalanan&quot;</span><span class="p">,</span> <span class="s2">&quot;pesawat&quot;</span>
+    <span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">&quot;travel&quot;</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;berita_detik_preprocessed.csv&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="c1"># Health / Kesehatan</span>
+    <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">k</span> <span class="ow">in</span> <span class="n">teks</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">&quot;vaksin&quot;</span><span class="p">,</span> <span class="s2">&quot;dokter&quot;</span><span class="p">,</span> <span class="s2">&quot;rumah sakit&quot;</span><span class="p">,</span> <span class="s2">&quot;penyakit&quot;</span><span class="p">,</span> <span class="s2">&quot;kesehatan&quot;</span><span class="p">,</span> <span class="s2">&quot;diet&quot;</span><span class="p">,</span> <span class="s2">&quot;covid&quot;</span><span class="p">,</span> <span class="s2">&quot;obat&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;virus&quot;</span><span class="p">,</span> <span class="s2">&quot;flu&quot;</span><span class="p">,</span> <span class="s2">&quot;demam&quot;</span><span class="p">,</span> <span class="s2">&quot;operasi&quot;</span><span class="p">,</span> <span class="s2">&quot;gejala&quot;</span><span class="p">,</span> <span class="s2">&quot;terapi&quot;</span><span class="p">,</span> <span class="s2">&quot;gizi&quot;</span><span class="p">,</span> <span class="s2">&quot;imunisasi&quot;</span><span class="p">,</span> <span class="s2">&quot;paru&quot;</span>
+    <span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">&quot;health&quot;</span>
 
-<span class="k">class</span> <span class="nc">MyTokenizer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">):</span>
-        <span class="c1"># Tokenisasi sederhana: lowercase + split</span>
-        <span class="k">return</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">]</span>
+    <span class="c1"># Politik</span>
+    <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">k</span> <span class="ow">in</span> <span class="n">teks</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span>
+        <span class="s2">&quot;politik&quot;</span><span class="p">,</span> <span class="s2">&quot;pilpres&quot;</span><span class="p">,</span> <span class="s2">&quot;pemilu&quot;</span><span class="p">,</span> <span class="s2">&quot;presiden&quot;</span><span class="p">,</span> <span class="s2">&quot;menteri&quot;</span><span class="p">,</span> <span class="s2">&quot;dpr&quot;</span><span class="p">,</span> <span class="s2">&quot;parlemen&quot;</span><span class="p">,</span> <span class="s2">&quot;partai&quot;</span><span class="p">,</span> <span class="s2">&quot;capres&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cawapres&quot;</span><span class="p">,</span> <span class="s2">&quot;kampanye&quot;</span><span class="p">,</span> <span class="s2">&quot;kabinet&quot;</span><span class="p">,</span> <span class="s2">&quot;politisi&quot;</span><span class="p">,</span> <span class="s2">&quot;caleg&quot;</span><span class="p">,</span> <span class="s2">&quot;koalisi&quot;</span><span class="p">,</span> <span class="s2">&quot;oposisi&quot;</span><span class="p">,</span> <span class="s2">&quot;pemerintah&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;wakil rakyat&quot;</span><span class="p">,</span> <span class="s2">&quot;pemilihan&quot;</span><span class="p">,</span> <span class="s2">&quot;undang-undang&quot;</span>
+    <span class="p">]):</span>
+        <span class="k">return</span> <span class="s2">&quot;politik&quot;</span>
 
-<span class="k">class</span> <span class="nc">MeanEmbeddingVectorizer</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word2vec_model</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">word2vec</span> <span class="o">=</span> <span class="n">word2vec_model</span>
-        <span class="c1"># Perbaikan: gunakan vector_size (Gensim ≥ 4.0)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">word2vec_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">vector_size</span>
-
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span>
-
-    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="n">X_tokenized</span> <span class="o">=</span> <span class="n">MyTokenizer</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-        <span class="n">embeddings</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">words</span> <span class="ow">in</span> <span class="n">X_tokenized</span><span class="p">:</span>
-            <span class="c1"># Ambil vektor hanya untuk kata yang ada di vocab</span>
-            <span class="n">valid_vectors</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">word2vec</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span>
-                <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">word2vec</span><span class="o">.</span><span class="n">wv</span>
-            <span class="p">]</span>
-            <span class="k">if</span> <span class="n">valid_vectors</span><span class="p">:</span>
-                <span class="n">embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">valid_vectors</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">embeddings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clean_txt</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isi</span><span class="p">)):</span>
-    <span class="c1"># ubah ke string dulu, isi NaN jadi string kosong</span>
-    <span class="n">desc</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;isi&#39;</span><span class="p">][</span><span class="n">w</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-
-    <span class="c1"># remove punctuation</span>
-    <span class="n">desc</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;[^a-zA-Z]&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span>
-
-    <span class="c1"># remove tags</span>
-    <span class="n">desc</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;&amp;lt;/?.*?&amp;gt;&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span>
-
-    <span class="c1"># remove digits and special chars</span>
-    <span class="n">desc</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;(</span><span class="se">\\</span><span class="s2">d|</span><span class="se">\\</span><span class="s2">W)+&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span>
-
-    <span class="n">clean_txt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span>
-
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokens_final&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">clean_txt</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html">
-  <div id="df-723ac4af-d2b1-4280-b92b-77b171c0c662" class="colab-df-container">
-    <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>judul</th>
-      <th>link</th>
-      <th>kategori</th>
-      <th>isi</th>
-      <th>before</th>
-      <th>after_lower_no_symbol</th>
-      <th>after_stopword</th>
-      <th>after_corrected</th>
-      <th>after_stemmed</th>
-      <th>tokens_final</th>
-      <th>array</th>
-      <th>embedding_length</th>
-      <th>sentence_embedding</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>Dua Tahun Berlalu, Korban Gempa Maroko Masih H...</td>
-      <td>https://news.detik.com/foto-news/d-8114261/dua...</td>
-      <td>news</td>
-      <td>Maroko - Dua tahun pascagempa, ribuan warga Ma...</td>
-      <td>maroko dua tahun pascagempa ribuan warga marok...</td>
-      <td>maroko dua tahun pascagempa ribuan warga marok...</td>
-      <td>maroko pascagempa ribuan warga maroko tinggal ...</td>
-      <td>maroko pascagempa ribuan harga maroko tinggal ...</td>
-      <td>maroko pascagempa ribu harga maroko tinggal te...</td>
-      <td>maroko dua tahun pascagempa ribuan warga marok...</td>
-      <td>[[-0.010699586, 0.017314877, -0.0060127103, -0...</td>
-      <td>22</td>
-      <td>[-6.4685584e-05, 0.00032119677, 0.0002946688, ...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>Alvi Pemutilasi Pacar Diamuk dan Diumpat Warga...</td>
-      <td>https://news.detik.com/berita/d-8116286/alvi-p...</td>
-      <td>news</td>
-      <td>Rekonstruksi kasus Alvi Maulana (24) yang muti...</td>
-      <td>rekonstruksi kasus alvi maulana yang mutilasi ...</td>
-      <td>rekonstruksi kasus alvi maulana yang mutilasi ...</td>
-      <td>rekonstruksi alvi maulana mutilasi tiara angel...</td>
-      <td>rekonstruksi alvi maulana mutilasi tiara angel...</td>
-      <td>rekonstruksi alvi maulana mutilasi tiara angel...</td>
-      <td>rekonstruksi kasus alvi maulana yang mutilasi ...</td>
-      <td>[[-0.013450207, -0.018679561, 0.0009880124, -0...</td>
-      <td>88</td>
-      <td>[0.0031934495, -0.0019993037, 0.0015487056, 0....</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>Truk Seruduk 2 Angkot Lagi Ngetem di Bogor, 3 ...</td>
-      <td>https://news.detik.com/berita/d-8116283/truk-s...</td>
-      <td>news</td>
-      <td>Kecelakaan lalu lintas melibatkan truk dan dua...</td>
-      <td>kecelakaan lalu lintas melibatkan truk dan dua...</td>
-      <td>kecelakaan lalu lintas melibatkan truk dan dua...</td>
-      <td>kecelakaan lintas melibatkan truk unit angkot ...</td>
-      <td>kecelakaan lintas melibatkan truk tni angkot a...</td>
-      <td>celaka lintas libat truk tni angkot angkut kot...</td>
-      <td>kecelakaan lalu lintas melibatkan truk dan dua...</td>
-      <td>[[-0.0027899707, -0.017694484, 0.0027040553, -...</td>
-      <td>82</td>
-      <td>[-0.00019099689, -0.0028137479, 0.00026481214,...</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>MK Gelar Sidang Putusan 5 Gugatan UU TNI Hari Ini</td>
-      <td>https://news.detik.com/berita/d-8116272/mk-gel...</td>
-      <td>news</td>
-      <td>Mahkamah Konstitusi (MK) akan menggelar sidang...</td>
-      <td>mahkamah konstitusi mk akan menggelar sidang g...</td>
-      <td>mahkamah konstitusi mk akan menggelar sidang g...</td>
-      <td>mahkamah konstitusi mk menggelar sidang gugata...</td>
-      <td>mahkamah konstitusi kpk menggelar sidang gugat...</td>
-      <td>mahkamah konstitusi kpk gelar sidang gugat uu ...</td>
-      <td>mahkamah konstitusi mk akan menggelar sidang g...</td>
-      <td>[[-0.0022926165, 0.0037466213, -0.009113402, 0...</td>
-      <td>74</td>
-      <td>[0.0025689802, 0.00036175258, 0.002266981, 0.0...</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>Gelar Razia, Pemprov Banten Temukan 86 Kendara...</td>
-      <td>https://news.detik.com/berita/d-8116269/gelar-...</td>
-      <td>news</td>
-      <td>Pemerintah Provinsi Banten menggelar razia ken...</td>
-      <td>pemerintah provinsi banten menggelar razia ken...</td>
-      <td>pemerintah provinsi banten menggelar razia ken...</td>
-      <td>pemerintah provinsi banten menggelar razia ken...</td>
-      <td>pemerintah provinsi banten menggelar razia ken...</td>
-      <td>perintah provinsi banten gelar razia kendara b...</td>
-      <td>pemerintah provinsi banten menggelar razia ken...</td>
-      <td>[[0.00038313336, -0.011171429, 0.020692125, 0....</td>
-      <td>118</td>
-      <td>[0.0019087285, 0.00020290892, 0.002978689, 0.0...</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-    <div class="colab-df-buttons">
-
-  <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-723ac4af-d2b1-4280-b92b-77b171c0c662')"
-            title="Convert this dataframe to an interactive table."
-            style="display:none;">
-
-  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
-    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
-  </svg>
-    </button>
-
-  <style>
-    .colab-df-container {
-      display:flex;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    .colab-df-buttons div {
-      margin-bottom: 4px;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-    <script>
-      const buttonEl =
-        document.querySelector('#df-723ac4af-d2b1-4280-b92b-77b171c0c662 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
-
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-723ac4af-d2b1-4280-b92b-77b171c0c662');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
-  </div>
-
-
-    <div id="df-0c1ae238-55f3-4ff3-968e-b8e790a1adae">
-      <button class="colab-df-quickchart" onclick="quickchart('df-0c1ae238-55f3-4ff3-968e-b8e790a1adae')"
-                title="Suggest charts"
-                style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
-</svg>
-      </button>
-
-<style>
-  .colab-df-quickchart {
-      --bg-color: #E8F0FE;
-      --fill-color: #1967D2;
-      --hover-bg-color: #E2EBFA;
-      --hover-fill-color: #174EA6;
-      --disabled-fill-color: #AAA;
-      --disabled-bg-color: #DDD;
-  }
-
-  [theme=dark] .colab-df-quickchart {
-      --bg-color: #3B4455;
-      --fill-color: #D2E3FC;
-      --hover-bg-color: #434B5C;
-      --hover-fill-color: #FFFFFF;
-      --disabled-bg-color: #3B4455;
-      --disabled-fill-color: #666;
-  }
-
-  .colab-df-quickchart {
-    background-color: var(--bg-color);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    fill: var(--fill-color);
-    height: 32px;
-    padding: 0;
-    width: 32px;
-  }
-
-  .colab-df-quickchart:hover {
-    background-color: var(--hover-bg-color);
-    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-    fill: var(--button-hover-fill-color);
-  }
-
-  .colab-df-quickchart-complete:disabled,
-  .colab-df-quickchart-complete:disabled:hover {
-    background-color: var(--disabled-bg-color);
-    fill: var(--disabled-fill-color);
-    box-shadow: none;
-  }
-
-  .colab-df-spinner {
-    border: 2px solid var(--fill-color);
-    border-color: transparent;
-    border-bottom-color: var(--fill-color);
-    animation:
-      spin 1s steps(1) infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-      border-left-color: var(--fill-color);
-    }
-    20% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    30% {
-      border-color: transparent;
-      border-left-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-      border-right-color: var(--fill-color);
-    }
-    40% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-top-color: var(--fill-color);
-    }
-    60% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-    }
-    80% {
-      border-color: transparent;
-      border-right-color: var(--fill-color);
-      border-bottom-color: var(--fill-color);
-    }
-    90% {
-      border-color: transparent;
-      border-bottom-color: var(--fill-color);
-    }
-  }
-</style>
-
-      <script>
-        async function quickchart(key) {
-          const quickchartButtonEl =
-            document.querySelector('#' + key + ' button');
-          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-          quickchartButtonEl.classList.add('colab-df-spinner');
-          try {
-            const charts = await google.colab.kernel.invokeFunction(
-                'suggestCharts', [key], {});
-          } catch (error) {
-            console.error('Error during call to suggestCharts:', error);
-          }
-          quickchartButtonEl.classList.remove('colab-df-spinner');
-          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-        }
-        (() => {
-          let quickchartButtonEl =
-            document.querySelector('#df-0c1ae238-55f3-4ff3-968e-b8e790a1adae button');
-          quickchartButtonEl.style.display =
-            google.colab.kernel.accessAllowed ? 'block' : 'none';
-        })();
-      </script>
-    </div>
-
-    </div>
-  </div>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(150, 14)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corpus</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;tokens_final&#39;</span><span class="p">]:</span>
-    <span class="n">word_list</span> <span class="o">=</span> <span class="n">col</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-    <span class="n">corpus</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word_list</span><span class="p">)</span>
-
-<span class="c1"># show first value</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">corpus</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="c1"># generate vectors from corpus</span>
-<span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vector_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[&#39;maroko&#39;, &#39;dua&#39;, &#39;tahun&#39;, &#39;pascagempa&#39;, &#39;ribuan&#39;, &#39;warga&#39;, &#39;maroko&#39;, &#39;masih&#39;, &#39;tinggal&#39;, &#39;di&#39;, &#39;tenda&#39;, &#39;darurat&#39;, &#39;mereka&#39;, &#39;menuntut&#39;, &#39;bantuan&#39;, &#39;lebih&#39;, &#39;besar&#39;, &#39;di&#39;, &#39;tengah&#39;, &#39;gencarnya&#39;, &#39;proyek&#39;, &#39;stadion&#39;, &#39;&#39;]]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
-
-<span class="c1"># cek dulu apakah kata ada di vocabulary</span>
-<span class="k">def</span> <span class="nf">safe_most_similar</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="c1"># Default</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">&#39; tidak ada di vocabulary&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;news&quot;</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">safe_most_similar</span><span class="p">(</span><span class="s1">&#39;eric&#39;</span><span class="p">))</span>
+<span class="c1"># Tambahkan kolom kategori_baru (pakai isi berita asli)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;kategori_baru&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;isi&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">label_kategori_isi</span><span class="p">)</span>
 
-<span class="c1"># gunakan cosmul dengan pengecekan</span>
-<span class="n">positive_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;phone&#39;</span><span class="p">,</span> <span class="s1">&#39;number&#39;</span><span class="p">]</span>
-<span class="n">negative_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;call&#39;</span><span class="p">]</span>
+<span class="c1"># Pilih kolom sesuai permintaan</span>
+<span class="n">df_new</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;judul&quot;</span><span class="p">,</span> <span class="s2">&quot;kategori_baru&quot;</span><span class="p">,</span> <span class="s2">&quot;isi&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;before&quot;</span><span class="p">,</span> <span class="s2">&quot;after_lower_no_symbol&quot;</span><span class="p">,</span> <span class="s2">&quot;after_stopword&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;after_corrected&quot;</span><span class="p">,</span> <span class="s2">&quot;after_stemmed&quot;</span><span class="p">,</span> <span class="s2">&quot;tokens_final&quot;</span><span class="p">]]</span>
 
-<span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">w</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">positive_words</span> <span class="o">+</span> <span class="n">negative_words</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar_cosmul</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="n">positive_words</span><span class="p">,</span> <span class="n">negative</span><span class="o">=</span><span class="n">negative_words</span><span class="p">))</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ada kata yang tidak ada di vocabulary untuk cosmul test&quot;</span><span class="p">)</span>
+<span class="c1"># Simpan ke file CSV baru di folder yang sama di Drive</span>
+<span class="n">df_new</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/Semester 7/berita_kategori_baru.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># outlier detection (pengganti doesnt_match)</span>
-<span class="n">words</span> <span class="o">=</span> <span class="s2">&quot;phone number prison cell&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-<span class="n">valid_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">]</span>
+<span class="c1"># Tampilkan distribusi berita per kategori</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi berita per kategori:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="s2">&quot;kategori_baru&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
 
-<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_words</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Outlier:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">get_outlier</span><span class="p">(</span><span class="n">valid_words</span><span class="p">))</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tidak cukup kata valid di vocabulary untuk outlier test&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Distribusi berita per kategori:
+kategori_baru
+news        72
+politik     48
+health      11
+travel      10
+olahraga     9
+Name: count, dtype: int64
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
 
-<span class="c1"># save embeddings</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;berita_embd.txt&#39;</span>
-<span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">save_word2vec_format</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">binary</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Embeddings berhasil disimpan di </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Baca dataset preprocessed</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/Semester 7/berita_kategori_baru.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan 10 data teratas dengan semua kolom</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Tampilkan info dataframe (biar kelihatan semua kolom &amp; tipe datanya)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Info Dataset:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;eric&#39; tidak ada di vocabulary
-Ada kata yang tidak ada di vocabulary untuk cosmul test
-Tidak cukup kata valid di vocabulary untuk outlier test
-Embeddings berhasil disimpan di berita_embd.txt
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_embedding_vectorizer</span> <span class="o">=</span> <span class="n">MeanEmbeddingVectorizer</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-<span class="n">mean_embedded</span> <span class="o">=</span> <span class="n">mean_embedding_vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;before&#39;</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;array&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;before&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">]</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;embedding_length&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;array&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>   <span class="c1"># untuk lihat kolom apa saja yang ada</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;id&#39;, &#39;judul&#39;, &#39;link&#39;, &#39;kategori&#39;, &#39;isi&#39;, &#39;before&#39;,
-       &#39;after_lower_no_symbol&#39;, &#39;after_stopword&#39;, &#39;after_corrected&#39;,
-       &#39;after_stemmed&#39;, &#39;tokens_final&#39;, &#39;array&#39;, &#39;embedding_length&#39;,
-       &#39;sentence_embedding&#39;],
-      dtype=&#39;object&#39;)
-</pre></div>
-</div>
-<div class="output text_html">
-  <div id="df-907d288f-e99c-4800-b87e-eb1189c1f865" class="colab-df-container">
+  <div id="df-c48777e8-e8ad-4b67-9531-19566ce8450e" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
         vertical-align: middle;
     }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
 </style>
 <table border="1" class="dataframe">
   <thead>
@@ -1006,8 +488,7 @@ Embeddings berhasil disimpan di berita_embd.txt
       <th></th>
       <th>id</th>
       <th>judul</th>
-      <th>link</th>
-      <th>kategori</th>
+      <th>kategori_baru</th>
       <th>isi</th>
       <th>before</th>
       <th>after_lower_no_symbol</th>
@@ -1015,9 +496,6 @@ Embeddings berhasil disimpan di berita_embd.txt
       <th>after_corrected</th>
       <th>after_stemmed</th>
       <th>tokens_final</th>
-      <th>array</th>
-      <th>embedding_length</th>
-      <th>sentence_embedding</th>
     </tr>
   </thead>
   <tbody>
@@ -1025,102 +503,144 @@ Embeddings berhasil disimpan di berita_embd.txt
       <th>0</th>
       <td>1</td>
       <td>Dua Tahun Berlalu, Korban Gempa Maroko Masih H...</td>
-      <td>https://news.detik.com/foto-news/d-8114261/dua...</td>
       <td>news</td>
       <td>Maroko - Dua tahun pascagempa, ribuan warga Ma...</td>
-      <td>maroko dua tahun pascagempa ribuan warga marok...</td>
+      <td>Maroko - Dua tahun pascagempa, ribuan warga Ma...</td>
       <td>maroko dua tahun pascagempa ribuan warga marok...</td>
       <td>maroko pascagempa ribuan warga maroko tinggal ...</td>
       <td>maroko pascagempa ribuan harga maroko tinggal ...</td>
       <td>maroko pascagempa ribu harga maroko tinggal te...</td>
-      <td>maroko dua tahun pascagempa ribuan warga marok...</td>
-      <td>[[-0.010696203, 0.017314568, -0.0060050604, -0...</td>
-      <td>22</td>
-      <td>[-6.4685584e-05, 0.00032119677, 0.0002946688, ...</td>
+      <td>['maroko', 'pascagempa', 'ribu', 'harga', 'mar...</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2</td>
       <td>Alvi Pemutilasi Pacar Diamuk dan Diumpat Warga...</td>
-      <td>https://news.detik.com/berita/d-8116286/alvi-p...</td>
       <td>news</td>
       <td>Rekonstruksi kasus Alvi Maulana (24) yang muti...</td>
-      <td>rekonstruksi kasus alvi maulana yang mutilasi ...</td>
+      <td>Rekonstruksi kasus Alvi Maulana (24) yang muti...</td>
       <td>rekonstruksi kasus alvi maulana yang mutilasi ...</td>
       <td>rekonstruksi alvi maulana mutilasi tiara angel...</td>
       <td>rekonstruksi alvi maulana mutilasi tiara angel...</td>
       <td>rekonstruksi alvi maulana mutilasi tiara angel...</td>
-      <td>rekonstruksi kasus alvi maulana yang mutilasi ...</td>
-      <td>[[-0.013432026, -0.018676031, 0.0009931973, -0...</td>
-      <td>88</td>
-      <td>[0.0031934495, -0.0019993037, 0.0015487056, 0....</td>
+      <td>['rekonstruksi', 'alvi', 'maulana', 'mutilasi'...</td>
     </tr>
     <tr>
       <th>2</th>
       <td>3</td>
       <td>Truk Seruduk 2 Angkot Lagi Ngetem di Bogor, 3 ...</td>
-      <td>https://news.detik.com/berita/d-8116283/truk-s...</td>
-      <td>news</td>
+      <td>olahraga</td>
       <td>Kecelakaan lalu lintas melibatkan truk dan dua...</td>
-      <td>kecelakaan lalu lintas melibatkan truk dan dua...</td>
+      <td>Kecelakaan lalu lintas melibatkan truk dan dua...</td>
       <td>kecelakaan lalu lintas melibatkan truk dan dua...</td>
       <td>kecelakaan lintas melibatkan truk unit angkot ...</td>
       <td>kecelakaan lintas melibatkan truk tni angkot a...</td>
       <td>celaka lintas libat truk tni angkot angkut kot...</td>
-      <td>kecelakaan lalu lintas melibatkan truk dan dua...</td>
-      <td>[[-0.0027693189, -0.017717171, 0.002769074, -0...</td>
-      <td>82</td>
-      <td>[-0.00019099689, -0.0028137479, 0.00026481214,...</td>
+      <td>['celaka', 'lintas', 'libat', 'truk', 'tni', '...</td>
     </tr>
     <tr>
       <th>3</th>
       <td>4</td>
       <td>MK Gelar Sidang Putusan 5 Gugatan UU TNI Hari Ini</td>
-      <td>https://news.detik.com/berita/d-8116272/mk-gel...</td>
       <td>news</td>
       <td>Mahkamah Konstitusi (MK) akan menggelar sidang...</td>
-      <td>mahkamah konstitusi mk akan menggelar sidang g...</td>
+      <td>Mahkamah Konstitusi (MK) akan menggelar sidang...</td>
       <td>mahkamah konstitusi mk akan menggelar sidang g...</td>
       <td>mahkamah konstitusi mk menggelar sidang gugata...</td>
       <td>mahkamah konstitusi kpk menggelar sidang gugat...</td>
       <td>mahkamah konstitusi kpk gelar sidang gugat uu ...</td>
-      <td>mahkamah konstitusi mk akan menggelar sidang g...</td>
-      <td>[[-0.0022939423, 0.0037371365, -0.009071284, 0...</td>
-      <td>74</td>
-      <td>[0.0025689802, 0.00036175258, 0.002266981, 0.0...</td>
+      <td>['mahkamah', 'konstitusi', 'kpk', 'gelar', 'si...</td>
     </tr>
     <tr>
       <th>4</th>
       <td>5</td>
       <td>Gelar Razia, Pemprov Banten Temukan 86 Kendara...</td>
-      <td>https://news.detik.com/berita/d-8116269/gelar-...</td>
-      <td>news</td>
+      <td>politik</td>
+      <td>Pemerintah Provinsi Banten menggelar razia ken...</td>
       <td>Pemerintah Provinsi Banten menggelar razia ken...</td>
       <td>pemerintah provinsi banten menggelar razia ken...</td>
       <td>pemerintah provinsi banten menggelar razia ken...</td>
       <td>pemerintah provinsi banten menggelar razia ken...</td>
-      <td>pemerintah provinsi banten menggelar razia ken...</td>
       <td>perintah provinsi banten gelar razia kendara b...</td>
-      <td>pemerintah provinsi banten menggelar razia ken...</td>
-      <td>[[0.00042605802, -0.01120574, 0.02077001, 0.01...</td>
-      <td>118</td>
-      <td>[0.0019087285, 0.00020290892, 0.002978689, 0.0...</td>
+      <td>['perintah', 'provinsi', 'banten', 'gelar', 'r...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>Bareskrim Usul Ada LO Polri di LPSK demi Perku...</td>
+      <td>politik</td>
+      <td>Bareskrim Polri memberikan sejumlah usulan ter...</td>
+      <td>Bareskrim Polri memberikan sejumlah usulan ter...</td>
+      <td>bareskrim polri memberikan sejumlah usulan ter...</td>
+      <td>bareskrim polri usulan terkait ruu lpsk baresk...</td>
+      <td>bareskrim polisi usulan terkait ruu kpk baresk...</td>
+      <td>bareskrim polisi usul kait ruu kpk bareskrim u...</td>
+      <td>['bareskrim', 'polisi', 'usul', 'kait', 'ruu',...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>Pemobil di Pekanbaru Jadi Tersangka Usai Pukul...</td>
+      <td>olahraga</td>
+      <td>Pengendara mobil di Pekanbaru , Riau, Olvi Pra...</td>
+      <td>Pengendara mobil di Pekanbaru , Riau, Olvi Pra...</td>
+      <td>pengendara mobil di pekanbaru riau olvi praiya...</td>
+      <td>pengendara mobil pekanbaru riau olvi praiyan m...</td>
+      <td>pengendara mobil pekanbaru riau olvi praiyan m...</td>
+      <td>kendara mobil pekanbaru riau olvi praiyan ania...</td>
+      <td>['kendara', 'mobil', 'pekanbaru', 'riau', 'olv...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>Pimpinan Komisi I DPR Ungkap Djamari Chaniago ...</td>
+      <td>olahraga</td>
+      <td>Presiden Prabowo Subianto akan melantik Menter...</td>
+      <td>Presiden Prabowo Subianto akan melantik Menter...</td>
+      <td>presiden prabowo subianto akan melantik menter...</td>
+      <td>presiden prabowo subianto melantik menteri koo...</td>
+      <td>presiden prabowo subianto melantik menteri koo...</td>
+      <td>presiden prabowo subianto lantik menteri koord...</td>
+      <td>['presiden', 'prabowo', 'subianto', 'lantik', ...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>China Kumpulkan Sekutunya, Bentuk Tatanan Glob...</td>
+      <td>politik</td>
+      <td>Forum Xiangshan adalah pertemuan keamanan inte...</td>
+      <td>Forum Xiangshan adalah pertemuan keamanan inte...</td>
+      <td>forum xiangshan adalah pertemuan keamanan inte...</td>
+      <td>forum xiangshan pertemuan keamanan internasion...</td>
+      <td>forum xiangshan pertemuan keamanan internasion...</td>
+      <td>forum xiangshan temu aman internasional tahun ...</td>
+      <td>['forum', 'xiangshan', 'temu', 'aman', 'intern...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>Wamentrans Sebut Pengiriman Transmigran Tergan...</td>
+      <td>politik</td>
+      <td>Wakil Menteri Transmigrasi Viva Yoga Mauladi m...</td>
+      <td>Wakil Menteri Transmigrasi Viva Yoga Mauladi m...</td>
+      <td>wakil menteri transmigrasi viva yoga mauladi m...</td>
+      <td>wakil menteri transmigrasi viva yoga mauladi k...</td>
+      <td>wakil menteri transmigrasi liga liga mauladi k...</td>
+      <td>wakil menteri transmigrasi liga liga mauladi m...</td>
+      <td>['wakil', 'menteri', 'transmigrasi', 'liga', '...</td>
     </tr>
   </tbody>
 </table>
 </div>
     <div class="colab-df-buttons">
-
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-907d288f-e99c-4800-b87e-eb1189c1f865')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-c48777e8-e8ad-4b67-9531-19566ce8450e')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
-
   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
     <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
   </svg>
     </button>
-
   <style>
     .colab-df-container {
       display:flex;
@@ -1161,47 +681,46 @@ Embeddings berhasil disimpan di berita_embd.txt
       fill: #FFFFFF;
     }
   </style>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
+  const buttonEl =
+    document.querySelector(&#39;#df-c48777e8-e8ad-4b67-9531-19566ce8450e button.colab-df-convert&#39;);
+  buttonEl.style.display =
+    google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
 
-    <script>
-      const buttonEl =
-        document.querySelector('#df-907d288f-e99c-4800-b87e-eb1189c1f865 button.colab-df-convert');
-      buttonEl.style.display =
-        google.colab.kernel.accessAllowed ? 'block' : 'none';
+  async function convertToInteractive(key) {
+    const element = document.querySelector(&#39;#df-c48777e8-e8ad-4b67-9531-19566ce8450e&#39;);
+    const dataTable =
+      await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
+                                                [key], {});
+    if (!dataTable) return;
 
-      async function convertToInteractive(key) {
-        const element = document.querySelector('#df-907d288f-e99c-4800-b87e-eb1189c1f865');
-        const dataTable =
-          await google.colab.kernel.invokeFunction('convertToInteractive',
-                                                    [key], {});
-        if (!dataTable) return;
-
-        const docLinkHtml = 'Like what you see? Visit the ' +
-          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
-          + ' to learn more about interactive tables.';
-        element.innerHTML = '';
-        dataTable['output_type'] = 'display_data';
-        await google.colab.output.renderOutput(dataTable, element);
-        const docLink = document.createElement('div');
-        docLink.innerHTML = docLinkHtml;
-        element.appendChild(docLink);
-      }
-    </script>
+    const docLinkHtml = &#39;Like what you see? Visit the &#39; +
+      &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
+      + &#39; to learn more about interactive tables.&#39;;
+    element.innerHTML = &#39;&#39;;
+    dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
+    await google.colab.output.renderOutput(dataTable, element);
+    const docLink = document.createElement(&#39;div&#39;);
+    docLink.innerHTML = docLinkHtml;
+    element.appendChild(docLink);
+  }
+&lt;/script&gt;
+</pre></div>
+</div>
   </div>
-
-
-    <div id="df-d35f2662-ded4-41cd-9470-4e78bcf04e81">
-      <button class="colab-df-quickchart" onclick="quickchart('df-d35f2662-ded4-41cd-9470-4e78bcf04e81')"
-                title="Suggest charts"
-                style="display:none;">
-
-<svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
-     width="24px">
-    <g>
-        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-    </g>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;df-59996446-a174-4c62-9d3f-a7e671bf6414&quot;&gt;
+  &lt;button class=&quot;colab-df-quickchart&quot; onclick=&quot;quickchart(&#39;df-59996446-a174-4c62-9d3f-a7e671bf6414&#39;)&quot;
+            title=&quot;Suggest charts&quot;
+            style=&quot;display:none;&quot;&gt;
+</pre></div>
+</div>
+<p>&lt;svg xmlns=”<a class="reference external" href="http://www.w3.org/2000/svg">http://www.w3.org/2000/svg</a>” height=”24px”viewBox=”0 0 24 24”
+width=”24px”&gt;
+<g>
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+</g>
 </svg>
-      </button>
-
+</button></p>
 <style>
   .colab-df-quickchart {
       --bg-color: #E8F0FE;
@@ -1291,119 +810,589 @@ Embeddings berhasil disimpan di berita_embd.txt
     }
   }
 </style>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  &lt;script&gt;
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector(&#39;#&#39; + key + &#39; button&#39;);
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add(&#39;colab-df-spinner&#39;);
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            &#39;suggestCharts&#39;, [key], {});
+      } catch (error) {
+        console.error(&#39;Error during call to suggestCharts:&#39;, error);
+      }
+      quickchartButtonEl.classList.remove(&#39;colab-df-spinner&#39;);
+      quickchartButtonEl.classList.add(&#39;colab-df-quickchart-complete&#39;);
+    }
+    (() =&gt; {
+      let quickchartButtonEl =
+        document.querySelector(&#39;#df-59996446-a174-4c62-9d3f-a7e671bf6414 button&#39;);
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
 
-      <script>
-        async function quickchart(key) {
-          const quickchartButtonEl =
-            document.querySelector('#' + key + ' button');
-          quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
-          quickchartButtonEl.classList.add('colab-df-spinner');
-          try {
-            const charts = await google.colab.kernel.invokeFunction(
-                'suggestCharts', [key], {});
-          } catch (error) {
-            console.error('Error during call to suggestCharts:', error);
-          }
-          quickchartButtonEl.classList.remove('colab-df-spinner');
-          quickchartButtonEl.classList.add('colab-df-quickchart-complete');
-        }
-        (() => {
-          let quickchartButtonEl =
-            document.querySelector('#df-d35f2662-ded4-41cd-9470-4e78bcf04e81 button');
-          quickchartButtonEl.style.display =
-            google.colab.kernel.accessAllowed ? 'block' : 'none';
-        })();
-      </script>
-    </div>
-
-    </div>
+&lt;/div&gt;
+</pre></div>
+</div>
   </div>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Info Dataset:
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 150 entries, 0 to 149
+Data columns (total 10 columns):
+ #   Column                 Non-Null Count  Dtype 
+---  ------                 --------------  ----- 
+ 0   id                     150 non-null    int64 
+ 1   judul                  150 non-null    object
+ 2   kategori_baru          150 non-null    object
+ 3   isi                    137 non-null    object
+ 4   before                 137 non-null    object
+ 5   after_lower_no_symbol  137 non-null    object
+ 6   after_stopword         137 non-null    object
+ 7   after_corrected        137 non-null    object
+ 8   after_stemmed          137 non-null    object
+ 9   tokens_final           150 non-null    object
+dtypes: int64(1), object(9)
+memory usage: 11.8+ KB
+None
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(150, 14)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hapus baris yang kolom &#39;isi&#39;-nya kosong (NaN)</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;isi&#39;</span><span class="p">])</span>
 
-<span class="c1"># buat kalimat embedding dengan mean dari semua kata</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;sentence_embedding&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;array&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
-    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">vector_size</span><span class="p">)</span>
+<span class="c1"># Simpan hasil bersih ke file baru di folder yang sama</span>
+<span class="n">df_clean</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/Semester 7/berita_fiks.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan info hasil pembersihan</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah data sebelum dibersihkan:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah data sesudah dibersihkan:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_clean</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">File hasil bersih sudah disimpan sebagai: berita_fiks.csv&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Jumlah data sebelum dibersihkan: 150
+Jumlah data sesudah dibersihkan: 137
+
+File hasil bersih sudah disimpan sebagai: berita_fiks.csv
+</pre></div>
+</div>
+<p>#TF-IDF</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="c1"># Baca dataset preprocessed</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/Semester 7/berita_fiks.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># Ambil teks dari kolom hasil preprocessing (tokens_final)</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;tokens_final&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi TF-IDF Vectorizer</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+
+<span class="c1"># Fit dan transform data</span>
+<span class="n">tfidf_matrix</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">corpus</span><span class="p">)</span>
+
+<span class="c1"># Ubah jadi DataFrame biar lebih mudah dilihat</span>
+<span class="n">tfidf_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">tfidf_matrix</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">(),</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
 <span class="p">)</span>
 
-<span class="c1"># konversi ke DataFrame</span>
-<span class="n">embedding_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;sentence_embedding&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="c1"># Tampilkan 10 dokumen pertama dengan 10 kata fitur pertama</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Contoh hasil TF-IDF:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tfidf_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="mi">10</span><span class="p">])</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">embedding_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape:&quot;</span><span class="p">,</span> <span class="n">embedding_df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># (jumlah_kalimat, vector_size)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>         0         1         2         3         4         5         6   \
-0 -0.000016  0.000306  0.000417  0.013333 -0.009994 -0.017485  0.033354   
-1  0.003241 -0.002006  0.001657  0.011149 -0.008941 -0.015097  0.027763   
-2 -0.000144 -0.002825  0.000375  0.010797 -0.009627 -0.018936  0.025676   
-3  0.002632  0.000347  0.002414  0.014739 -0.018027 -0.024658  0.038524   
-4  0.001958  0.000192  0.003095  0.013206 -0.013844 -0.017455  0.029572   
+<span class="c1"># Simpan hasil TF-IDF ke file CSV</span>
+<span class="n">tfidf_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;berita_tfidf.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Hasil TF-IDF disimpan di &#39;berita_tfidf.csv&#39;&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tfidf_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:</span><span class="mi">10</span><span class="p">])</span>
 
-         7         8         9   ...        40        41        42        43  \
-0  0.026911 -0.028236 -0.002173  ...  0.030321 -0.011065 -0.007183  0.006229   
-1  0.026313 -0.025098 -0.006337  ...  0.025824 -0.004995 -0.001400  0.004931   
-2  0.028540 -0.027923 -0.006741  ...  0.027873 -0.009754 -0.002848  0.004348   
-3  0.039078 -0.035122 -0.008852  ...  0.031914 -0.009393 -0.003663  0.002950   
-4  0.026797 -0.029366 -0.007183  ...  0.027627 -0.007629 -0.000602  0.002915   
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Contoh hasil TF-IDF:
+    abadi  abai  abdi  abdul  abh     acara  aceh        ad  ada  adab
+id                                                                    
+1     0.0   0.0   0.0    0.0  0.0  0.000000   0.0  0.000000  0.0   0.0
+2     0.0   0.0   0.0    0.0  0.0  0.000000   0.0  0.000000  0.0   0.0
+3     0.0   0.0   0.0    0.0  0.0  0.000000   0.0  0.000000  0.0   0.0
+4     0.0   0.0   0.0    0.0  0.0  0.000000   0.0  0.000000  0.0   0.0
+5     0.0   0.0   0.0    0.0  0.0  0.000000   0.0  0.000000  0.0   0.0
+6     0.0   0.0   0.0    0.0  0.0  0.000000   0.0  0.000000  0.0   0.0
+7     0.0   0.0   0.0    0.0  0.0  0.000000   0.0  0.000000  0.0   0.0
+8     0.0   0.0   0.0    0.0  0.0  0.000000   0.0  0.106124  0.0   0.0
+9     0.0   0.0   0.0    0.0  0.0  0.063151   0.0  0.000000  0.0   0.0
+10    0.0   0.0   0.0    0.0  0.0  0.085693   0.0  0.000000  0.0   0.0
 
-         44        45        46        47        48        49  
-0  0.048850  0.004892 -0.005276 -0.028665  0.012360  0.014685  
-1  0.043103  0.006391 -0.005149 -0.019953  0.010842  0.012375  
-2  0.046286  0.007825 -0.005664 -0.021715  0.013425  0.008895  
-3  0.056954  0.006986 -0.004127 -0.024092  0.015794  0.013899  
-4  0.046002  0.005103 -0.004869 -0.020402  0.012073  0.011489  
+Hasil TF-IDF disimpan di &#39;berita_tfidf.csv&#39;
+    abadi  abai  abdi  abdul  abh  acara  aceh   ad  ada  adab
+id                                                            
+1     0.0   0.0   0.0    0.0  0.0    0.0   0.0  0.0  0.0   0.0
+2     0.0   0.0   0.0    0.0  0.0    0.0   0.0  0.0  0.0   0.0
+3     0.0   0.0   0.0    0.0  0.0    0.0   0.0  0.0  0.0   0.0
+4     0.0   0.0   0.0    0.0  0.0    0.0   0.0  0.0  0.0   0.0
+5     0.0   0.0   0.0    0.0  0.0    0.0   0.0  0.0  0.0   0.0
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
 
-[5 rows x 50 columns]
-Shape: (150, 50)
+<span class="c1"># Pakai tokens_final</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;tokens_joined&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;tokens_final&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;tokens_joined&quot;</span><span class="p">])</span>
+
+<span class="c1"># jumlah kata unik</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah kata unik (vocabulary TF-IDF):&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()))</span>
+
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Jumlah kata unik (vocabulary TF-IDF): 2290
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;id&#39;, &#39;judul&#39;, &#39;link&#39;, &#39;kategori&#39;, &#39;isi&#39;, &#39;before&#39;,
-       &#39;after_lower_no_symbol&#39;, &#39;after_stopword&#39;, &#39;after_corrected&#39;,
-       &#39;after_stemmed&#39;, &#39;tokens_final&#39;, &#39;array&#39;, &#39;embedding_length&#39;,
-       &#39;sentence_embedding&#39;],
-      dtype=&#39;object&#39;)
+<p>#Word Embeding</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">gensim</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">embedding_df</span><span class="o">.</span><span class="n">shape</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: gensim in /usr/local/lib/python3.12/dist-packages (4.3.2)
+Requirement already satisfied: numpy&gt;=1.18.5 in /usr/local/lib/python3.12/dist-packages (from gensim) (1.26.4)
+Requirement already satisfied: scipy&gt;=1.7.0 in /usr/local/lib/python3.12/dist-packages (from gensim) (1.16.2)
+Requirement already satisfied: smart_open&gt;=1.8.1 in /usr/local/lib/python3.12/dist-packages (from gensim) (7.3.1)
+Requirement already satisfied: wrapt in /usr/local/lib/python3.12/dist-packages (from smart_open&gt;=1.8.1-&gt;gensim) (1.17.3)
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(150, 50)
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">force</span><span class="o">-</span><span class="n">reinstall</span> <span class="n">numpy</span> <span class="n">gensim</span>
 </pre></div>
 </div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Collecting numpy
+  Downloading numpy-2.3.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+[?25l     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/62.1 kB[0m [31m?[0m eta [36m-:--:--[0m
+</pre></div>
 </div>
+<p>[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m62.1/62.1 kB[0m [31m1.7 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting gensim
+Downloading gensim-4.3.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.1 kB)
+Collecting numpy
+Using cached numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+Collecting scipy&lt;1.14.0,&gt;=1.7.0 (from gensim)
+Downloading scipy-1.13.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (60 kB)
+[2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m60.6/60.6 kB[0m [31m3.7 MB/s[0m eta [36m0:00:00[0m
+[?25hCollecting smart-open&gt;=1.8.1 (from gensim)
+Downloading smart_open-7.3.1-py3-none-any.whl.metadata (24 kB)
+Collecting wrapt (from smart-open&gt;=1.8.1-&gt;gensim)
+Downloading wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.4 kB)
+Downloading gensim-4.3.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (26.6 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m26.6/26.6 MB[0m [31m55.8 MB/s[0m eta [36m0:00:00[0m
+[?25hUsing cached numpy-1.26.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.0 MB)
+Downloading scipy-1.13.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.2 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m38.2/38.2 MB[0m [31m20.0 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading smart_open-7.3.1-py3-none-any.whl (61 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m61.7/61.7 kB[0m [31m2.8 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading wrapt-1.17.3-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (88 kB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m88.0/88.0 kB[0m [31m5.8 MB/s[0m eta [36m0:00:00[0m
+[?25hInstalling collected packages: wrapt, numpy, smart-open, scipy, gensim
+Attempting uninstall: wrapt
+Found existing installation: wrapt 1.17.3
+Uninstalling wrapt-1.17.3:
+Successfully uninstalled wrapt-1.17.3
+Attempting uninstall: numpy
+Found existing installation: numpy 1.26.4
+Uninstalling numpy-1.26.4:
+Successfully uninstalled numpy-1.26.4
+Attempting uninstall: smart-open
+Found existing installation: smart_open 7.3.1
+Uninstalling smart_open-7.3.1:
+Successfully uninstalled smart_open-7.3.1
+Attempting uninstall: scipy
+Found existing installation: scipy 1.16.2
+Uninstalling scipy-1.16.2:
+Successfully uninstalled scipy-1.16.2
+Attempting uninstall: gensim
+Found existing installation: gensim 4.3.2
+Uninstalling gensim-4.3.2:
+Successfully uninstalled gensim-4.3.2
+[31mERROR: pip’s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+opencv-python 4.12.0.88 requires numpy&lt;2.3.0,&gt;=2; python_version &gt;= “3.9”, but you have numpy 1.26.4 which is incompatible.
+tsfresh 0.21.1 requires scipy&gt;=1.14.0; python_version &gt;= “3.10”, but you have scipy 1.13.1 which is incompatible.
+opencv-python-headless 4.12.0.88 requires numpy&lt;2.3.0,&gt;=2; python_version &gt;= “3.9”, but you have numpy 1.26.4 which is incompatible.
+opencv-contrib-python 4.12.0.88 requires numpy&lt;2.3.0,&gt;=2; python_version &gt;= “3.9”, but you have numpy 1.26.4 which is incompatible.
+thinc 8.3.6 requires numpy&lt;3.0.0,&gt;=2.0.0, but you have numpy 1.26.4 which is incompatible.[0m[31m
+[0mSuccessfully installed gensim-4.3.3 numpy-1.26.4 scipy-1.13.1 smart-open-7.3.1 wrapt-1.17.3</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">ast</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Baca CSV dari path Drive</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/Semester 7/berita_fiks.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+  <div id="df-e07e0363-096f-4c71-9aca-da600f4a01d1" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>judul</th>
+      <th>kategori_baru</th>
+      <th>isi</th>
+      <th>before</th>
+      <th>after_lower_no_symbol</th>
+      <th>after_stopword</th>
+      <th>after_corrected</th>
+      <th>after_stemmed</th>
+      <th>tokens_final</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Dua Tahun Berlalu, Korban Gempa Maroko Masih H...</td>
+      <td>news</td>
+      <td>Maroko - Dua tahun pascagempa, ribuan warga Ma...</td>
+      <td>Maroko - Dua tahun pascagempa, ribuan warga Ma...</td>
+      <td>maroko dua tahun pascagempa ribuan warga marok...</td>
+      <td>maroko pascagempa ribuan warga maroko tinggal ...</td>
+      <td>maroko pascagempa ribuan harga maroko tinggal ...</td>
+      <td>maroko pascagempa ribu harga maroko tinggal te...</td>
+      <td>['maroko', 'pascagempa', 'ribu', 'harga', 'mar...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Alvi Pemutilasi Pacar Diamuk dan Diumpat Warga...</td>
+      <td>news</td>
+      <td>Rekonstruksi kasus Alvi Maulana (24) yang muti...</td>
+      <td>Rekonstruksi kasus Alvi Maulana (24) yang muti...</td>
+      <td>rekonstruksi kasus alvi maulana yang mutilasi ...</td>
+      <td>rekonstruksi alvi maulana mutilasi tiara angel...</td>
+      <td>rekonstruksi alvi maulana mutilasi tiara angel...</td>
+      <td>rekonstruksi alvi maulana mutilasi tiara angel...</td>
+      <td>['rekonstruksi', 'alvi', 'maulana', 'mutilasi'...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Truk Seruduk 2 Angkot Lagi Ngetem di Bogor, 3 ...</td>
+      <td>olahraga</td>
+      <td>Kecelakaan lalu lintas melibatkan truk dan dua...</td>
+      <td>Kecelakaan lalu lintas melibatkan truk dan dua...</td>
+      <td>kecelakaan lalu lintas melibatkan truk dan dua...</td>
+      <td>kecelakaan lintas melibatkan truk unit angkot ...</td>
+      <td>kecelakaan lintas melibatkan truk tni angkot a...</td>
+      <td>celaka lintas libat truk tni angkot angkut kot...</td>
+      <td>['celaka', 'lintas', 'libat', 'truk', 'tni', '...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>MK Gelar Sidang Putusan 5 Gugatan UU TNI Hari Ini</td>
+      <td>news</td>
+      <td>Mahkamah Konstitusi (MK) akan menggelar sidang...</td>
+      <td>Mahkamah Konstitusi (MK) akan menggelar sidang...</td>
+      <td>mahkamah konstitusi mk akan menggelar sidang g...</td>
+      <td>mahkamah konstitusi mk menggelar sidang gugata...</td>
+      <td>mahkamah konstitusi kpk menggelar sidang gugat...</td>
+      <td>mahkamah konstitusi kpk gelar sidang gugat uu ...</td>
+      <td>['mahkamah', 'konstitusi', 'kpk', 'gelar', 'si...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Gelar Razia, Pemprov Banten Temukan 86 Kendara...</td>
+      <td>politik</td>
+      <td>Pemerintah Provinsi Banten menggelar razia ken...</td>
+      <td>Pemerintah Provinsi Banten menggelar razia ken...</td>
+      <td>pemerintah provinsi banten menggelar razia ken...</td>
+      <td>pemerintah provinsi banten menggelar razia ken...</td>
+      <td>pemerintah provinsi banten menggelar razia ken...</td>
+      <td>perintah provinsi banten gelar razia kendara b...</td>
+      <td>['perintah', 'provinsi', 'banten', 'gelar', 'r...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-e07e0363-096f-4c71-9aca-da600f4a01d1')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
+  const buttonEl =
+    document.querySelector(&#39;#df-e07e0363-096f-4c71-9aca-da600f4a01d1 button.colab-df-convert&#39;);
+  buttonEl.style.display =
+    google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+
+  async function convertToInteractive(key) {
+    const element = document.querySelector(&#39;#df-e07e0363-096f-4c71-9aca-da600f4a01d1&#39;);
+    const dataTable =
+      await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
+                                                [key], {});
+    if (!dataTable) return;
+
+    const docLinkHtml = &#39;Like what you see? Visit the &#39; +
+      &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
+      + &#39; to learn more about interactive tables.&#39;;
+    element.innerHTML = &#39;&#39;;
+    dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
+    await google.colab.output.renderOutput(dataTable, element);
+    const docLink = document.createElement(&#39;div&#39;);
+    docLink.innerHTML = docLinkHtml;
+    element.appendChild(docLink);
+  }
+&lt;/script&gt;
+</pre></div>
+</div>
+  </div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;df-cb03b7d0-8303-4d68-98d9-b40bb37ac32d&quot;&gt;
+  &lt;button class=&quot;colab-df-quickchart&quot; onclick=&quot;quickchart(&#39;df-cb03b7d0-8303-4d68-98d9-b40bb37ac32d&#39;)&quot;
+            title=&quot;Suggest charts&quot;
+            style=&quot;display:none;&quot;&gt;
+</pre></div>
+</div>
+<p>&lt;svg xmlns=”<a class="reference external" href="http://www.w3.org/2000/svg">http://www.w3.org/2000/svg</a>” height=”24px”viewBox=”0 0 24 24”
+width=”24px”&gt;
+<g>
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+</g>
+</svg>
+</button></p>
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  &lt;script&gt;
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector(&#39;#&#39; + key + &#39; button&#39;);
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add(&#39;colab-df-spinner&#39;);
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            &#39;suggestCharts&#39;, [key], {});
+      } catch (error) {
+        console.error(&#39;Error during call to suggestCharts:&#39;, error);
+      }
+      quickchartButtonEl.classList.remove(&#39;colab-df-spinner&#39;);
+      quickchartButtonEl.classList.add(&#39;colab-df-quickchart-complete&#39;);
+    }
+    (() =&gt; {
+      let quickchartButtonEl =
+        document.querySelector(&#39;#df-cb03b7d0-8303-4d68-98d9-b40bb37ac32d button&#39;);
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+</pre></div>
+</div>
+  </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">corpus</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;tokens_final&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="p">[]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span>
+    <span class="n">sentences</span><span class="o">=</span><span class="n">corpus</span><span class="p">,</span>
+    <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>   <span class="c1"># dimensi vektor</span>
+    <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>          <span class="c1"># konteks window</span>
+    <span class="n">min_count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>       <span class="c1"># kata muncul minimal 2 kali</span>
+    <span class="n">sg</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>              <span class="c1"># 1=skip-gram, 0=CBOW</span>
+    <span class="n">workers</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;/content/drive/MyDrive/Semester 7/word2vec_berita.model&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Lihat total dan contoh kata dalam vocab</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total kata dalam model:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">index_to_key</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">10 kata pertama dalam vocab:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">index_to_key</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Total kata dalam model: 1224
+
+10 kata pertama dalam vocab:
+[&#39;gol&#39;, &#39;tni&#39;, &#39;dpr&#39;, &#39;with&#39;, &#39;scroll&#39;, &#39;content&#39;, &#39;continue&#39;, &#39;kpk&#39;, &#39;polisi&#39;, &#39;pasar&#39;]
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># === Cek hasil ===</span>
+<span class="c1"># Ganti kata target di sini sesuai kata yang ingin dilihat</span>
+<span class="n">kata_target</span> <span class="o">=</span> <span class="s2">&quot;masyarakat&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Vektor untuk kata &#39;</span><span class="si">{</span><span class="n">kata_target</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="p">[</span><span class="n">kata_target</span><span class="p">][:</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># tampilkan 10 nilai pertama dari vektor</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Kata yang mirip dengan &#39;</span><span class="si">{</span><span class="n">kata_target</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">kata</span><span class="p">,</span> <span class="n">skor</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">kata_target</span><span class="p">,</span> <span class="n">topn</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">kata</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">skor</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Vektor untuk kata &#39;masyarakat&#39;:
+[-0.03845457  0.08990767  0.12875776  0.02771006 -0.0289501  -0.18374357
+  0.13039254  0.38831323 -0.10114109 -0.1788716 ]
+
+Kata yang mirip dengan &#39;masyarakat&#39;:
+kpk (0.9987)
+temu (0.9985)
+bangun (0.9985)
+kait (0.9985)
+orang (0.9985)
+</pre></div>
 </div>
 </section>
 
@@ -1447,11 +1436,11 @@ Shape: (150, 50)
       </div>
     </a>
     <a class="right-next"
-       href="supervised.html"
+       href="Klasifikasi_Berita.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Supervised Learning</p>
+        <p class="prev-next-title">Klasifikasi Berita menggunakan Fitur Latent Dirichlet Allocation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
