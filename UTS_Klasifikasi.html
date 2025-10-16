@@ -1,0 +1,1611 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>UTS Analisa Klasifikasi Berita &#8212; PPW</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'UTS_Klasifikasi';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="UTS Analisa Clustering" href="UTS_Clustering.html" />
+    <link rel="prev" title="Klasifikasi Berita menggunakan Fitur Latent Dirichlet Allocation" href="Klasifikasi_Berita.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/foto.png" class="logo__image only-light" alt="PPW - Home"/>
+    <img src="_static/foto.png" class="logo__image only-dark pst-js-only" alt="PPW - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Pencarian dan Penambangan WEB
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pengantar.html">Pengantar Web Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Crawling1.html">Web Crawling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Crawling_PTA.html">Crawling PTA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Crawling_Berita.html">Crawling Berita dari Detik.com</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prepocessing.html">Data Preprocessing Teks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Preprocessing_PTA.html">Preprocessing PTA Universitas Trunojoyo Madura</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Preprocessing_Berita.html">Preprocessing Berita dari Detik.com</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Perhitungan_Berita.html">TF-IDF dan Word Embeding Data Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Klasifikasi_Berita.html">Klasifikasi Berita menggunakan Fitur Latent Dirichlet Allocation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">UTS Analisa Klasifikasi Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS_Clustering.html">UTS Analisa Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsupervised.html">Unsupervised Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content.html">Web Content Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Web Usage Mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">Web Structure Mining</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FUTS_Klasifikasi.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/UTS_Klasifikasi.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>UTS Analisa Klasifikasi Berita</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisa-klasifikasi-berita-dengan-ekstraksi-fitur-model-dengan-classifier-naive-bayes-dan-svm">Analisa Klasifikasi Berita dengan Ekstraksi Fitur Model dengan Classifier Naive Bayes dan SVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data">Input Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-jumlah-dan-sebaran-data-per-kategori">Cek Jumlah dan Sebaran Data per Kategori</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepocessing">Prepocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-dengan-topic-modeling-lda">Ekstraksi Fitur dengan Topic Modeling (LDA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-untuk-training-dan-testing">Split Data untuk Training dan Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-dengan-naive-bayes">Klasifikasi dengan Naïve Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-dengan-svm">Klasifikasi dengan SVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-confusion-matrix">Visualisasi Confusion Matrix</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="uts-analisa-klasifikasi-berita">
+<h1>UTS Analisa Klasifikasi Berita<a class="headerlink" href="#uts-analisa-klasifikasi-berita" title="Link to this heading">#</a></h1>
+<section id="analisa-klasifikasi-berita-dengan-ekstraksi-fitur-model-dengan-classifier-naive-bayes-dan-svm">
+<h2>Analisa Klasifikasi Berita dengan Ekstraksi Fitur Model dengan Classifier Naive Bayes dan SVM<a class="headerlink" href="#analisa-klasifikasi-berita-dengan-ekstraksi-fitur-model-dengan-classifier-naive-bayes-dan-svm" title="Link to this heading">#</a></h2>
+</section>
+<section id="input-data">
+<h2>Input Data<a class="headerlink" href="#input-data" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;/content/drive/MyDrive/Semester 7/Berita.csv&#39;</span>
+
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah data:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Jumlah data: 1500
+</pre></div>
+</div>
+  <div id="df-92fc8b8d-9d4c-4218-90ee-ab62c54dba1a" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>No</th>
+      <th>judul</th>
+      <th>berita</th>
+      <th>tanggal</th>
+      <th>kategori</th>
+      <th>link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Airlangga Harap Kenaikan UMP Tingkatkan Daya B...</td>
+      <td>Menteri Koordinator (Menko) Bidang Perekonomia...</td>
+      <td>Minggu, 01 Des 2024 23:40 WIB</td>
+      <td>Ekonomi</td>
+      <td>https://www.cnnindonesia.com/ekonomi/202412012...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>PT SIER Beri Penghargaan untuk 50 Tenant Terba...</td>
+      <td>Dalam rangka memeriahkan hari jadi ke-50, PT S...</td>
+      <td>Minggu, 01 Des 2024 20:45 WIB</td>
+      <td>Ekonomi</td>
+      <td>https://www.cnnindonesia.com/ekonomi/202412012...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Prabowo Bakal Bentuk Kementerian Penerimaan Ne...</td>
+      <td>Wacana Presiden Prabowo Subianto akan membentu...</td>
+      <td>Minggu, 01 Des 2024 19:40 WIB</td>
+      <td>Ekonomi</td>
+      <td>https://www.cnnindonesia.com/ekonomi/202412011...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Sinergi Kemenag &amp; BPJS Ketenagakerjaan Lindung...</td>
+      <td>BPJS Ketenagakerjaan dan Kementerian Agama (Ke...</td>
+      <td>Minggu, 01 Des 2024 19:03 WIB</td>
+      <td>Ekonomi</td>
+      <td>https://www.cnnindonesia.com/ekonomi/202412011...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Pemerintah Segera Bentuk Satgas PHK Usai Tetap...</td>
+      <td>Pemerintah akan segera membentuk Satuan Tugas ...</td>
+      <td>Minggu, 01 Des 2024 19:00 WIB</td>
+      <td>Ekonomi</td>
+      <td>https://www.cnnindonesia.com/ekonomi/202412011...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-92fc8b8d-9d4c-4218-90ee-ab62c54dba1a')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
+  const buttonEl =
+    document.querySelector(&#39;#df-92fc8b8d-9d4c-4218-90ee-ab62c54dba1a button.colab-df-convert&#39;);
+  buttonEl.style.display =
+    google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+
+  async function convertToInteractive(key) {
+    const element = document.querySelector(&#39;#df-92fc8b8d-9d4c-4218-90ee-ab62c54dba1a&#39;);
+    const dataTable =
+      await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
+                                                [key], {});
+    if (!dataTable) return;
+
+    const docLinkHtml = &#39;Like what you see? Visit the &#39; +
+      &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
+      + &#39; to learn more about interactive tables.&#39;;
+    element.innerHTML = &#39;&#39;;
+    dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
+    await google.colab.output.renderOutput(dataTable, element);
+    const docLink = document.createElement(&#39;div&#39;);
+    docLink.innerHTML = docLinkHtml;
+    element.appendChild(docLink);
+  }
+&lt;/script&gt;
+</pre></div>
+</div>
+  </div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;df-77f96d69-019f-46a1-b4ed-18dd7602c2be&quot;&gt;
+  &lt;button class=&quot;colab-df-quickchart&quot; onclick=&quot;quickchart(&#39;df-77f96d69-019f-46a1-b4ed-18dd7602c2be&#39;)&quot;
+            title=&quot;Suggest charts&quot;
+            style=&quot;display:none;&quot;&gt;
+</pre></div>
+</div>
+<p>&lt;svg xmlns=”<a class="reference external" href="http://www.w3.org/2000/svg">http://www.w3.org/2000/svg</a>” height=”24px”viewBox=”0 0 24 24”
+width=”24px”&gt;
+<g>
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+</g>
+</svg>
+</button></p>
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  &lt;script&gt;
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector(&#39;#&#39; + key + &#39; button&#39;);
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add(&#39;colab-df-spinner&#39;);
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            &#39;suggestCharts&#39;, [key], {});
+      } catch (error) {
+        console.error(&#39;Error during call to suggestCharts:&#39;, error);
+      }
+      quickchartButtonEl.classList.remove(&#39;colab-df-spinner&#39;);
+      quickchartButtonEl.classList.add(&#39;colab-df-quickchart-complete&#39;);
+    }
+    (() =&gt; {
+      let quickchartButtonEl =
+        document.querySelector(&#39;#df-77f96d69-019f-46a1-b4ed-18dd7602c2be button&#39;);
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+</pre></div>
+</div>
+  </div>
+<section id="cek-jumlah-dan-sebaran-data-per-kategori">
+<h3>Cek Jumlah dan Sebaran Data per Kategori<a class="headerlink" href="#cek-jumlah-dan-sebaran-data-per-kategori" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hitung jumlah data di setiap kategori</span>
+<span class="n">kategori_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="c1"># Tampilkan hasil</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 Jumlah data per kategori:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kategori_counts</span><span class="p">)</span>
+
+<span class="c1"># Tampilkan juga total kategori unik</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔢 Total kategori unik:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>📊 Jumlah data per kategori:
+
+kategori
+Ekonomi          375
+Olahraga         375
+Nasional         375
+Internasional    375
+Name: count, dtype: int64
+
+🔢 Total kategori unik: 4
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">kategori_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">kategori_counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Sebaran Jumlah Data per Kategori Berita&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Kategori&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Jumlah Data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>/tmp/ipython-input-1445065985.py:5: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=kategori_counts.index, y=kategori_counts.values, palette=&#39;viridis&#39;)
+</pre></div>
+</div>
+<p><img alt="png" src="_images/UTS_Klasifikasi_7_1.png" /></p>
+</section>
+</section>
+<section id="prepocessing">
+<h2>Prepocessing<a class="headerlink" href="#prepocessing" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sastrawi</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Collecting sastrawi
+  Downloading Sastrawi-1.0.1-py2.py3-none-any.whl.metadata (909 bytes)
+Downloading Sastrawi-1.0.1-py2.py3-none-any.whl (209 kB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/209.7 kB[0m [31m?[0m eta [36m-:--:--[0m
+</pre></div>
+</div>
+<p>[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m209.7/209.7 kB[0m [31m8.3 MB/s[0m eta [36m0:00:00[0m
+[?25hInstalling collected packages: sastrawi
+Successfully installed sastrawi-1.0.1</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">Sastrawi.Stemmer.StemmerFactory</span> <span class="kn">import</span> <span class="n">StemmerFactory</span>
+
+<span class="c1"># Download stopwords Bahasa Indonesia</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;stopwords&#39;</span><span class="p">)</span>
+<span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;indonesian&#39;</span><span class="p">))</span>
+
+<span class="c1"># Inisialisasi stemmer Bahasa Indonesia</span>
+<span class="n">factory</span> <span class="o">=</span> <span class="n">StemmerFactory</span><span class="p">()</span>
+<span class="n">stemmer</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">create_stemmer</span><span class="p">()</span>
+
+<span class="c1"># Fungsi preprocessing</span>
+<span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>                              <span class="c1"># Case folding</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;http\S+|www.\S+&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>           <span class="c1"># Hapus URL</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-z\s]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>                  <span class="c1"># Hapus simbol dan angka</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>                                 <span class="c1"># Tokenisasi</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">t</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>   <span class="c1"># Stopword removal</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">]</span>            <span class="c1"># Stemming</span>
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>                               <span class="c1"># Gabungkan kembali</span>
+
+<span class="c1"># Terapkan ke kolom berita</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleaned&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;berita&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">preprocess</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[[</span><span class="s1">&#39;berita&#39;</span><span class="p">,</span> <span class="s1">&#39;cleaned&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[nltk_data] Downloading package stopwords to /root/nltk_data...
+[nltk_data]   Unzipping corpora/stopwords.zip.
+</pre></div>
+</div>
+  <div id="df-8c4f20dd-a8eb-4eb9-8b98-878864b799ca" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>berita</th>
+      <th>cleaned</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Menteri Koordinator (Menko) Bidang Perekonomia...</td>
+      <td>menteri koordinator menko bidang ekonomi airla...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Dalam rangka memeriahkan hari jadi ke-50, PT S...</td>
+      <td>rangka riah pt surabaya industrial estate rung...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Wacana Presiden Prabowo Subianto akan membentu...</td>
+      <td>wacana presiden prabowo subianto bentuk bentuk...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BPJS Ketenagakerjaan dan Kementerian Agama (Ke...</td>
+      <td>bpjs ketenagakerjaan menteri agama kemenag lin...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Pemerintah akan segera membentuk Satuan Tugas ...</td>
+      <td>perintah bentuk satu tugas putus hubung kerja ...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-8c4f20dd-a8eb-4eb9-8b98-878864b799ca')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
+  const buttonEl =
+    document.querySelector(&#39;#df-8c4f20dd-a8eb-4eb9-8b98-878864b799ca button.colab-df-convert&#39;);
+  buttonEl.style.display =
+    google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+
+  async function convertToInteractive(key) {
+    const element = document.querySelector(&#39;#df-8c4f20dd-a8eb-4eb9-8b98-878864b799ca&#39;);
+    const dataTable =
+      await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
+                                                [key], {});
+    if (!dataTable) return;
+
+    const docLinkHtml = &#39;Like what you see? Visit the &#39; +
+      &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
+      + &#39; to learn more about interactive tables.&#39;;
+    element.innerHTML = &#39;&#39;;
+    dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
+    await google.colab.output.renderOutput(dataTable, element);
+    const docLink = document.createElement(&#39;div&#39;);
+    docLink.innerHTML = docLinkHtml;
+    element.appendChild(docLink);
+  }
+&lt;/script&gt;
+</pre></div>
+</div>
+  </div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;df-7ac57849-b034-4d43-aefb-5bb1b9312048&quot;&gt;
+  &lt;button class=&quot;colab-df-quickchart&quot; onclick=&quot;quickchart(&#39;df-7ac57849-b034-4d43-aefb-5bb1b9312048&#39;)&quot;
+            title=&quot;Suggest charts&quot;
+            style=&quot;display:none;&quot;&gt;
+</pre></div>
+</div>
+<p>&lt;svg xmlns=”<a class="reference external" href="http://www.w3.org/2000/svg">http://www.w3.org/2000/svg</a>” height=”24px”viewBox=”0 0 24 24”
+width=”24px”&gt;
+<g>
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+</g>
+</svg>
+</button></p>
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  &lt;script&gt;
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector(&#39;#&#39; + key + &#39; button&#39;);
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add(&#39;colab-df-spinner&#39;);
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            &#39;suggestCharts&#39;, [key], {});
+      } catch (error) {
+        console.error(&#39;Error during call to suggestCharts:&#39;, error);
+      }
+      quickchartButtonEl.classList.remove(&#39;colab-df-spinner&#39;);
+      quickchartButtonEl.classList.add(&#39;colab-df-quickchart-complete&#39;);
+    }
+    (() =&gt; {
+      let quickchartButtonEl =
+        document.querySelector(&#39;#df-7ac57849-b034-4d43-aefb-5bb1b9312048 button&#39;);
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+</pre></div>
+</div>
+  </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tampilkan 10 contoh pertama biar kelihatan jelas</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># biar teksnya gak terpotong</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;📊 Perbandingan Sebelum dan Sesudah Preprocessing:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;berita&#39;</span><span class="p">,</span> <span class="s1">&#39;cleaned&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>📊 Perbandingan Sebelum dan Sesudah Preprocessing:
+</pre></div>
+</div>
+  <div id="df-e837d526-cd21-4fd9-aab6-eca5665ebfd8" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>berita</th>
+      <th>cleaned</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Menteri Koordinator (Menko) Bidang Perekonomian Airlangga Hartarto berharap kenaikan upah minimu...</td>
+      <td>menteri koordinator menko bidang ekonomi airlangga hartarto harap naik upah minimum provinsi ump...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Dalam rangka memeriahkan hari jadi ke-50, PT Surabaya Industrial Estate Rungkut (PT SIER) mengge...</td>
+      <td>rangka riah pt surabaya industrial estate rungkut pt sier gelar acara tajuk green industrial awa...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Wacana Presiden Prabowo Subianto akan membentuk akan membentuk Kementerian Penerimaan Negara kem...</td>
+      <td>wacana presiden prabowo subianto bentuk bentuk menteri terima negara santer beredarsinyal bentuk...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>BPJS Ketenagakerjaan dan Kementerian Agama (Kemenag) memberikan perlindungan jaminan sosial kete...</td>
+      <td>bpjs ketenagakerjaan menteri agama kemenag lindung jamin sosial ketenagakerjaan ribu guru tenaga...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Pemerintah akan segera membentuk Satuan Tugas Pemutusan Hubungan Kerja (Satgas PHK) usai menetap...</td>
+      <td>perintah bentuk satu tugas putus hubung kerja satgas phk tetap upah minimum provinsi ump persenr...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Menko Bidang Infrastruktur dan Pembangunan Kewilayahan Agus Harimurti Yudhoyono (AHY) buka-bukaa...</td>
+      <td>menko bidang infrastruktur bangun wilayah agus harimurti yudhoyono ahy bukabukaan nasib bangun k...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Kepala Badan Gizi Nasional Dadan Hindayana menyebut anggaran makan bergizi gratis sebesar Rp10 r...</td>
+      <td>kepala badan gizi nasional dad hindayana sebut anggar makan gizi gratis rp ribu anak harga ratar...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Menteri Koordinator Bidang Pangan Zulkifli Hasan meminta tambahan anggaran Rp510 miliar kepada D...</td>
+      <td>menteri koordinator bidang pangan zulkifli hasan tambah anggar rp miliar dpr tambah anggar mente...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Uji coba alias commissioning pembangkit listrik tenaga surya (PLTS) di IKN Nusantara bakal dilak...</td>
+      <td>uji coba alias commissioning bangkit listrik tenaga surya plts ikn nusantara desember direktur u...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Anak crazy rich pengusaha sawit Kalimantan Samsudin Andi Arsyad alias Haji Isam, Jhony Saputra m...</td>
+      <td>anak crazy rich usaha sawit kalimantan samsudin andi arsyad alias haji isam jhony saputra sorot ...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-e837d526-cd21-4fd9-aab6-eca5665ebfd8')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
+  const buttonEl =
+    document.querySelector(&#39;#df-e837d526-cd21-4fd9-aab6-eca5665ebfd8 button.colab-df-convert&#39;);
+  buttonEl.style.display =
+    google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+
+  async function convertToInteractive(key) {
+    const element = document.querySelector(&#39;#df-e837d526-cd21-4fd9-aab6-eca5665ebfd8&#39;);
+    const dataTable =
+      await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
+                                                [key], {});
+    if (!dataTable) return;
+
+    const docLinkHtml = &#39;Like what you see? Visit the &#39; +
+      &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
+      + &#39; to learn more about interactive tables.&#39;;
+    element.innerHTML = &#39;&#39;;
+    dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
+    await google.colab.output.renderOutput(dataTable, element);
+    const docLink = document.createElement(&#39;div&#39;);
+    docLink.innerHTML = docLinkHtml;
+    element.appendChild(docLink);
+  }
+&lt;/script&gt;
+</pre></div>
+</div>
+  </div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div id=&quot;df-7504a54d-7d33-4fbd-bac8-a45964b6a708&quot;&gt;
+  &lt;button class=&quot;colab-df-quickchart&quot; onclick=&quot;quickchart(&#39;df-7504a54d-7d33-4fbd-bac8-a45964b6a708&#39;)&quot;
+            title=&quot;Suggest charts&quot;
+            style=&quot;display:none;&quot;&gt;
+</pre></div>
+</div>
+<p>&lt;svg xmlns=”<a class="reference external" href="http://www.w3.org/2000/svg">http://www.w3.org/2000/svg</a>” height=”24px”viewBox=”0 0 24 24”
+width=”24px”&gt;
+<g>
+<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+</g>
+</svg>
+</button></p>
+<style>
+  .colab-df-quickchart {
+      --bg-color: #E8F0FE;
+      --fill-color: #1967D2;
+      --hover-bg-color: #E2EBFA;
+      --hover-fill-color: #174EA6;
+      --disabled-fill-color: #AAA;
+      --disabled-bg-color: #DDD;
+  }
+
+  [theme=dark] .colab-df-quickchart {
+      --bg-color: #3B4455;
+      --fill-color: #D2E3FC;
+      --hover-bg-color: #434B5C;
+      --hover-fill-color: #FFFFFF;
+      --disabled-bg-color: #3B4455;
+      --disabled-fill-color: #666;
+  }
+
+  .colab-df-quickchart {
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    fill: var(--fill-color);
+    height: 32px;
+    padding: 0;
+    width: 32px;
+  }
+
+  .colab-df-quickchart:hover {
+    background-color: var(--hover-bg-color);
+    box-shadow: 0 1px 2px rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+    fill: var(--button-hover-fill-color);
+  }
+
+  .colab-df-quickchart-complete:disabled,
+  .colab-df-quickchart-complete:disabled:hover {
+    background-color: var(--disabled-bg-color);
+    fill: var(--disabled-fill-color);
+    box-shadow: none;
+  }
+
+  .colab-df-spinner {
+    border: 2px solid var(--fill-color);
+    border-color: transparent;
+    border-bottom-color: var(--fill-color);
+    animation:
+      spin 1s steps(1) infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+      border-left-color: var(--fill-color);
+    }
+    20% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    30% {
+      border-color: transparent;
+      border-left-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+      border-right-color: var(--fill-color);
+    }
+    40% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-top-color: var(--fill-color);
+    }
+    60% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+    }
+    80% {
+      border-color: transparent;
+      border-right-color: var(--fill-color);
+      border-bottom-color: var(--fill-color);
+    }
+    90% {
+      border-color: transparent;
+      border-bottom-color: var(--fill-color);
+    }
+  }
+</style>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  &lt;script&gt;
+    async function quickchart(key) {
+      const quickchartButtonEl =
+        document.querySelector(&#39;#&#39; + key + &#39; button&#39;);
+      quickchartButtonEl.disabled = true;  // To prevent multiple clicks.
+      quickchartButtonEl.classList.add(&#39;colab-df-spinner&#39;);
+      try {
+        const charts = await google.colab.kernel.invokeFunction(
+            &#39;suggestCharts&#39;, [key], {});
+      } catch (error) {
+        console.error(&#39;Error during call to suggestCharts:&#39;, error);
+      }
+      quickchartButtonEl.classList.remove(&#39;colab-df-spinner&#39;);
+      quickchartButtonEl.classList.add(&#39;colab-df-quickchart-complete&#39;);
+    }
+    (() =&gt; {
+      let quickchartButtonEl =
+        document.querySelector(&#39;#df-7504a54d-7d33-4fbd-bac8-a45964b6a708 button&#39;);
+      quickchartButtonEl.style.display =
+        google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+</pre></div>
+</div>
+  </div>
+<p>langkah-langkah preprocessing:</p>
+<ol class="arabic simple">
+<li><p><strong>Case folding</strong> – Mengubah semua huruf menjadi huruf kecil supaya kata yang sama tapi berbeda kapitalisasi dianggap identik.</p></li>
+<li><p><strong>Hapus URL</strong> – Menghilangkan alamat web atau link karena biasanya tidak relevan untuk analisis teks.</p></li>
+<li><p><strong>Hapus simbol dan angka</strong> – Menghapus tanda baca dan angka agar fokus pada kata yang bermakna.</p></li>
+<li><p><strong>Tokenisasi</strong> – Memecah teks menjadi kata-kata individual agar bisa dianalisis satu per satu.</p></li>
+<li><p><strong>Stopword removal</strong> – Menghapus kata-kata umum seperti “dan”, “yang”, “di” yang tidak memberikan informasi penting.</p></li>
+<li><p><strong>Stemming</strong> – Mengubah kata ke bentuk dasar agar kata turunan dianggap sama, misal “berlari” → “lari”.</p></li>
+</ol>
+</section>
+<section id="ekstraksi-fitur-dengan-topic-modeling-lda">
+<h2>Ekstraksi Fitur dengan Topic Modeling (LDA)<a class="headerlink" href="#ekstraksi-fitur-dengan-topic-modeling-lda" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">LatentDirichletAllocation</span>
+
+<span class="c1"># Ubah teks bersih menjadi representasi bag-of-words</span>
+<span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># batasi 1000 kata agar efisien</span>
+<span class="n">X_counts</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cleaned&#39;</span><span class="p">])</span>
+
+<span class="c1"># Gunakan LDA untuk menemukan topik</span>
+<span class="n">lda</span> <span class="o">=</span> <span class="n">LatentDirichletAllocation</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># 10 topik</span>
+<span class="n">X_topics</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_counts</span><span class="p">)</span>
+
+<span class="c1"># Cek bentuk data hasil ekstraksi fitur</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bentuk fitur topik:&quot;</span><span class="p">,</span> <span class="n">X_topics</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Bentuk fitur topik: (1500, 10)
+</pre></div>
+</div>
+<p>Kode ini mengubah teks menjadi fitur topik numerik sehingga dokumen bisa dianalisis, diklasifikasikan, atau divisualisasi berdasarkan topik yang terkandung.Digunakan 1000 kata untuk dihtung dan diambil 10 topik berdasarkan kata yang paling dominan.</p>
+</section>
+<section id="split-data-untuk-training-dan-testing">
+<h2>Split Data untuk Training dan Testing<a class="headerlink" href="#split-data-untuk-training-dan-testing" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_topics</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="klasifikasi-dengan-naive-bayes">
+<h2>Klasifikasi dengan Naïve Bayes<a class="headerlink" href="#klasifikasi-dengan-naive-bayes" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">MultinomialNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span>
+
+<span class="n">nb</span> <span class="o">=</span> <span class="n">MultinomialNB</span><span class="p">()</span>
+<span class="n">nb</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred_nb</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎯 Akurasi Naïve Bayes:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📄 Classification Report (Naïve Bayes):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>🎯 Akurasi Naïve Bayes: 0.8533333333333334
+
+📄 Classification Report (Naïve Bayes):
+                precision    recall  f1-score   support
+
+      Ekonomi       0.79      0.93      0.85        75
+Internasional       0.84      0.87      0.86        75
+     Nasional       0.80      0.63      0.70        75
+     Olahraga       0.99      0.99      0.99        75
+
+     accuracy                           0.85       300
+    macro avg       0.85      0.85      0.85       300
+ weighted avg       0.85      0.85      0.85       300
+</pre></div>
+</div>
+</section>
+<section id="klasifikasi-dengan-svm">
+<h2>Klasifikasi dengan SVM<a class="headerlink" href="#klasifikasi-dengan-svm" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
+
+<span class="n">svm</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">svm</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred_svm</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎯 Akurasi SVM:&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_svm</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📄 Classification Report (SVM):</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_svm</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>🎯 Akurasi SVM: 0.83
+
+📄 Classification Report (SVM):
+                precision    recall  f1-score   support
+
+      Ekonomi       0.76      0.93      0.84        75
+Internasional       0.88      0.69      0.78        75
+     Nasional       0.71      0.69      0.70        75
+     Olahraga       0.99      1.00      0.99        75
+
+     accuracy                           0.83       300
+    macro avg       0.84      0.83      0.83       300
+ weighted avg       0.84      0.83      0.83       300
+</pre></div>
+</div>
+</section>
+<section id="visualisasi-confusion-matrix">
+<h2>Visualisasi Confusion Matrix<a class="headerlink" href="#visualisasi-confusion-matrix" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="k">def</span> <span class="nf">plot_confusion</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">title</span><span class="p">):</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+                <span class="n">xticklabels</span><span class="o">=</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+                <span class="n">yticklabels</span><span class="o">=</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plot_confusion</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_nb</span><span class="p">,</span> <span class="s2">&quot;Confusion Matrix - Naïve Bayes&quot;</span><span class="p">)</span>
+<span class="n">plot_confusion</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_svm</span><span class="p">,</span> <span class="s2">&quot;Confusion Matrix - SVM&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p><img alt="png" src="_images/UTS_Klasifikasi_23_0.png" /></p>
+<p><img alt="png" src="_images/UTS_Klasifikasi_23_1.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Klasifikasi_Berita.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Klasifikasi Berita menggunakan Fitur Latent Dirichlet Allocation</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="UTS_Clustering.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">UTS Analisa Clustering</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisa-klasifikasi-berita-dengan-ekstraksi-fitur-model-dengan-classifier-naive-bayes-dan-svm">Analisa Klasifikasi Berita dengan Ekstraksi Fitur Model dengan Classifier Naive Bayes dan SVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#input-data">Input Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cek-jumlah-dan-sebaran-data-per-kategori">Cek Jumlah dan Sebaran Data per Kategori</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepocessing">Prepocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-dengan-topic-modeling-lda">Ekstraksi Fitur dengan Topic Modeling (LDA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#split-data-untuk-training-dan-testing">Split Data untuk Training dan Testing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-dengan-naive-bayes">Klasifikasi dengan Naïve Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-dengan-svm">Klasifikasi dengan SVM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-confusion-matrix">Visualisasi Confusion Matrix</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Lisda Lanchira Syahjian
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

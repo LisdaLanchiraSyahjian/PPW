@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Klasifikasi_Berita';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Supervised Learning" href="supervised.html" />
+    <link rel="next" title="UTS Analisa Klasifikasi Berita" href="UTS_Klasifikasi.html" />
     <link rel="prev" title="TF-IDF dan Word Embeding Data Berita" href="Perhitungan_Berita.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -178,6 +178,8 @@
 <li class="toctree-l1"><a class="reference internal" href="Preprocessing_Berita.html">Preprocessing Berita dari Detik.com</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Perhitungan_Berita.html">TF-IDF dan Word Embeding Data Berita</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Klasifikasi Berita menggunakan Fitur Latent Dirichlet Allocation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS_Klasifikasi.html">UTS Analisa Klasifikasi Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UTS_Clustering.html">UTS Analisa Clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="supervised.html">Supervised Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="unsupervised.html">Unsupervised Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="content.html">Web Content Mining</a></li>
@@ -3546,7 +3548,7 @@ WARNING:gensim.models.ldamulticore:too few updates, training might not converge;
 WARNING:gensim.models.ldamulticore:too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
 </pre></div>
 </div>
-<p><img alt="png" src="_images/Klasifikasi_Berita_42_1.png" /></p>
+<p><img alt="png" src="Klasifikasi_Berita_files/Klasifikasi_Berita_42_1.png" /></p>
 <p><strong>Running LDA using TF-IDF</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lda_model_tfidf</span> <span class="o">=</span> <span class="n">gensim</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">LdaMulticore</span><span class="p">(</span><span class="n">corpus_tfidf</span><span class="p">,</span> <span class="n">num_topics</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">id2word</span> <span class="o">=</span> <span class="n">dic</span><span class="p">,</span> <span class="n">passes</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
@@ -3783,11 +3785,11 @@ Score: 0.013158458285033703	 Topik 0.019*&quot;tanah&quot; + 0.018*&quot;menteri
       </div>
     </a>
     <a class="right-next"
-       href="supervised.html"
+       href="UTS_Klasifikasi.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Supervised Learning</p>
+        <p class="prev-next-title">UTS Analisa Klasifikasi Berita</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
